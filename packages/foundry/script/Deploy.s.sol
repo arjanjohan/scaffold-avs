@@ -91,6 +91,7 @@ contract DeployScript is ScaffoldETHDeploy, Utils {
 
         vm.startBroadcast(deployerPrivateKey);
 
+        // erc20Mock = new ERC20Mock();
         _deployErc20AndStrategyAndWhitelistStrategy(
             eigenLayerProxyAdmin,
             eigenLayerPauserReg,

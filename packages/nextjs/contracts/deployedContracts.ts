@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     ERC20Mock: {
-      address: "0x99bba657f2bbc93c02d617f8ba121cb8fc104acf",
+      address: "0xd6e1afe5ca8d00a2efc01b89997abe2de47fdfaf",
       abi: [
         {
           type: "function",
@@ -221,6 +221,1934 @@ const deployedContracts = {
         totalSupply: "lib/forge-std/src/interfaces/IERC20.sol",
         transfer: "lib/forge-std/src/interfaces/IERC20.sol",
         transferFrom: "lib/forge-std/src/interfaces/IERC20.sol",
+      },
+    },
+    TransparentUpgradeableProxy: {
+      address: "0x19ceccd6942ad38562ee10bafd44776ceb67e923",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_logic",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "admin_",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "fallback",
+          stateMutability: "payable",
+        },
+        {
+          type: "receive",
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "admin",
+          inputs: [],
+          outputs: [
+            {
+              name: "admin_",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "changeAdmin",
+          inputs: [
+            {
+              name: "newAdmin",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "implementation",
+          inputs: [],
+          outputs: [
+            {
+              name: "implementation_",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgradeTo",
+          inputs: [
+            {
+              name: "newImplementation",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgradeToAndCall",
+          inputs: [
+            {
+              name: "newImplementation",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "event",
+          name: "AdminChanged",
+          inputs: [
+            {
+              name: "previousAdmin",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newAdmin",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "BeaconUpgraded",
+          inputs: [
+            {
+              name: "beacon",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Upgraded",
+          inputs: [
+            {
+              name: "implementation",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ProxyAdmin: {
+      address: "0xca8c8688914e0f7096c920146cd0ad85cd7ae8b9",
+      abi: [
+        {
+          type: "function",
+          name: "changeProxyAdmin",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract TransparentUpgradeableProxy",
+            },
+            {
+              name: "newAdmin",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getProxyAdmin",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract TransparentUpgradeableProxy",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getProxyImplementation",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract TransparentUpgradeableProxy",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgrade",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract TransparentUpgradeableProxy",
+            },
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgradeAndCall",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract TransparentUpgradeableProxy",
+            },
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {
+        owner:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        renounceOwnership:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        transferOwnership:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+      },
+    },
+    PauserRegistry: {
+      address: "0xb0f05d25e41fbc2b52013099ed9616f1206ae21b",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_pausers",
+              type: "address[]",
+              internalType: "address[]",
+            },
+            {
+              name: "_unpauser",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isPauser",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "setIsPauser",
+          inputs: [
+            {
+              name: "newPauser",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "canPause",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setUnpauser",
+          inputs: [
+            {
+              name: "newUnpauser",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "unpauser",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "PauserStatusChanged",
+          inputs: [
+            {
+              name: "pauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "canPause",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "UnpauserChanged",
+          inputs: [
+            {
+              name: "previousUnpauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newUnpauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {
+        isPauser: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
+        unpauser: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
+      },
+    },
+    EmptyContract: {
+      address: "0x5feaebfb4439f3516c74939a9d04e95afe82c4ae",
+      abi: [
+        {
+          type: "function",
+          name: "foo",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "pure",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ECDSAStakeRegistry: {
+      address: "0xd42912755319665397ff090fbb63b1a31ae87cee",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_delegationManager",
+              type: "address",
+              internalType: "contract IDelegationManager",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "deregisterOperator",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getLastCheckpointOperatorWeight",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLastCheckpointThresholdWeight",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLastCheckpointThresholdWeightAtBlock",
+          inputs: [
+            {
+              name: "_blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLastCheckpointTotalWeight",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLastCheckpointTotalWeightAtBlock",
+          inputs: [
+            {
+              name: "_blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLastestOperatorSigningKey",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorSigningKeyAtBlock",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_blockNumber",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorWeight",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorWeightAtBlock",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initialize",
+          inputs: [
+            {
+              name: "_serviceManager",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_thresholdWeight",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_quorum",
+              type: "tuple",
+              internalType: "struct Quorum",
+              components: [
+                {
+                  name: "strategies",
+                  type: "tuple[]",
+                  internalType: "struct StrategyParams[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isValidSignature",
+          inputs: [
+            {
+              name: "_dataHash",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "_signatureData",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes4",
+              internalType: "bytes4",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "minimumWeight",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "operatorRegistered",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "quorum",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct Quorum",
+              components: [
+                {
+                  name: "strategies",
+                  type: "tuple[]",
+                  internalType: "struct StrategyParams[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "registerOperatorWithSignature",
+          inputs: [
+            {
+              name: "_operatorSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+            {
+              name: "_signingKey",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateMinimumWeight",
+          inputs: [
+            {
+              name: "_newMinimumWeight",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_operators",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateOperatorSigningKey",
+          inputs: [
+            {
+              name: "_newSigningKey",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateOperators",
+          inputs: [
+            {
+              name: "_operators",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateOperatorsForQuorum",
+          inputs: [
+            {
+              name: "operatorsPerQuorum",
+              type: "address[][]",
+              internalType: "address[][]",
+            },
+            {
+              name: "",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateQuorumConfig",
+          inputs: [
+            {
+              name: "_quorum",
+              type: "tuple",
+              internalType: "struct Quorum",
+              components: [
+                {
+                  name: "strategies",
+                  type: "tuple[]",
+                  internalType: "struct StrategyParams[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "_operators",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateStakeThreshold",
+          inputs: [
+            {
+              name: "_thresholdWeight",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "MinimumWeightUpdated",
+          inputs: [
+            {
+              name: "_old",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "_new",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorDeregistered",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "_avs",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorRegistered",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "_avs",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorWeightUpdated",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "oldWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "newWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "QuorumUpdated",
+          inputs: [
+            {
+              name: "_old",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct Quorum",
+              components: [
+                {
+                  name: "strategies",
+                  type: "tuple[]",
+                  internalType: "struct StrategyParams[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "_new",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct Quorum",
+              components: [
+                {
+                  name: "strategies",
+                  type: "tuple[]",
+                  internalType: "struct StrategyParams[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "SigningKeyUpdate",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "updateBlock",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "newSigningKey",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "oldSigningKey",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ThresholdWeightUpdated",
+          inputs: [
+            {
+              name: "_thresholdWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "TotalWeightUpdated",
+          inputs: [
+            {
+              name: "oldTotalWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "newTotalWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "UpdateMinimumWeight",
+          inputs: [
+            {
+              name: "oldMinimumWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "newMinimumWeight",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "InsufficientSignedStake",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InsufficientWeight",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidLength",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidQuorum",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidReferenceBlock",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidSignature",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidSignedWeight",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidThreshold",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "LengthMismatch",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MustUpdateAllOperators",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotSorted",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OperatorAlreadyRegistered",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OperatorNotRegistered",
+          inputs: [],
+        },
+      ],
+      inheritedFunctions: {
+        isValidSignature:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts-upgradeable/contracts/interfaces/IERC1271Upgradeable.sol",
+        owner:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol",
+        renounceOwnership:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol",
+        transferOwnership:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol",
+      },
+    },
+    HelloWorldServiceManager: {
+      address: "0x32eece76c2c2e8758584a83ee2f522d4788fea0f",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_avsDirectory",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_stakeRegistry",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_delegationManager",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "allTaskHashes",
+          inputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "allTaskResponses",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "avsDirectory",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "createAVSRewardsSubmission",
+          inputs: [
+            {
+              name: "rewardsSubmissions",
+              type: "tuple[]",
+              internalType: "struct IRewardsCoordinator.RewardsSubmission[]",
+              components: [
+                {
+                  name: "strategiesAndMultipliers",
+                  type: "tuple[]",
+                  internalType: "struct IRewardsCoordinator.StrategyAndMultiplier[]",
+                  components: [
+                    {
+                      name: "strategy",
+                      type: "address",
+                      internalType: "contract IStrategy",
+                    },
+                    {
+                      name: "multiplier",
+                      type: "uint96",
+                      internalType: "uint96",
+                    },
+                  ],
+                },
+                {
+                  name: "token",
+                  type: "address",
+                  internalType: "contract IERC20",
+                },
+                {
+                  name: "amount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "startTimestamp",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "duration",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "createNewTask",
+          inputs: [
+            {
+              name: "name",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "deregisterOperatorFromAVS",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getOperatorRestakedStrategies",
+          inputs: [
+            {
+              name: "_operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getRestakeableStrategies",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "latestTaskNum",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "operatorHasMinimumWeight",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "pauseAll",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [
+            {
+              name: "index",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pauserRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "registerOperatorToAVS",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operatorSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "respondToTask",
+          inputs: [
+            {
+              name: "task",
+              type: "tuple",
+              internalType: "struct IHelloWorldServiceManager.Task",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "taskCreatedBlock",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+            {
+              name: "referenceTaskIndex",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "signature",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setPauserRegistry",
+          inputs: [
+            {
+              name: "newPauserRegistry",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "stakeRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "unpause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateAVSMetadataURI",
+          inputs: [
+            {
+              name: "_metadataURI",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "NewTaskCreated",
+          inputs: [
+            {
+              name: "taskIndex",
+              type: "uint32",
+              indexed: true,
+              internalType: "uint32",
+            },
+            {
+              name: "task",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct IHelloWorldServiceManager.Task",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "taskCreatedBlock",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Paused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "PauserRegistrySet",
+          inputs: [
+            {
+              name: "pauserRegistry",
+              type: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
+            },
+            {
+              name: "newPauserRegistry",
+              type: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "RewardsInitiatorUpdated",
+          inputs: [
+            {
+              name: "prevRewardsInitiator",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newRewardsInitiator",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "TaskResponded",
+          inputs: [
+            {
+              name: "taskIndex",
+              type: "uint32",
+              indexed: true,
+              internalType: "uint32",
+            },
+            {
+              name: "task",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct IHelloWorldServiceManager.Task",
+              components: [
+                {
+                  name: "name",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "taskCreatedBlock",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+            {
+              name: "operator",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Unpaused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {
+        avsDirectory: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        createAVSRewardsSubmission: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        deregisterOperatorFromAVS: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        getOperatorRestakedStrategies: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        getRestakeableStrategies: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        owner: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        registerOperatorToAVS: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        renounceOwnership: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        stakeRegistry: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        transferOwnership: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        updateAVSMetadataURI: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        createNewTask: "contracts/IHelloWorldServiceManager.sol",
+        respondToTask: "contracts/IHelloWorldServiceManager.sol",
+        pause: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        pauseAll: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        paused: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        pauserRegistry: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        setPauserRegistry: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        unpause: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
       },
     },
   },
