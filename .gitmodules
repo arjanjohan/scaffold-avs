@@ -7,3 +7,6 @@
 [submodule "packages/foundry/lib/solidity-bytes-utils"]
 	path = packages/foundry/lib/solidity-bytes-utils
 	url = https://github.com/gnsps/solidity-bytes-utils
+[submodule "packages/foundry/lib/eigenlayer-middleware"]
+	path = packages/foundry/lib/eigenlayer-middleware
+	url = https://github.com/layr-Labs/eigenlayer-middleware
