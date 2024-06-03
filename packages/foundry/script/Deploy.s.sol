@@ -1,7 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "../contracts/YourContract.sol";
+import {HelloWorldServiceManager, IServiceManager} from "../contracts/HelloWorldServiceManager.sol";
+import "../contracts/ERC20Mock.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -15,11 +16,12 @@ contract DeployScript is ScaffoldETHDeploy {
             );
         }
         vm.startBroadcast(deployerPrivateKey);
-        YourContract yourContract =
-            new YourContract(vm.addr(deployerPrivateKey));
+        // ERC20Mock erc0Mock = new ERC20Mock(vm.addr(deployerPrivateKey)); // TODO: Wrong argument count for function call: 1 arguments given but expected 0.
+        ERC20Mock erc0Mock = new ERC20Mock();
         console.logString(
             string.concat(
-                "YourContract deployed at: ", vm.toString(address(yourContract))
+                "ERC20Mock deployed at: ",
+                vm.toString(address(erc0Mock))
             )
         );
         vm.stopBroadcast();
