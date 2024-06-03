@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     ERC20Mock: {
-      address: "0xd6e1afe5ca8d00a2efc01b89997abe2de47fdfaf",
+      address: "0x998abeb3e57409262ae5b751f60747921b33613e",
       abi: [
         {
           type: "function",
@@ -224,7 +224,7 @@ const deployedContracts = {
       },
     },
     TransparentUpgradeableProxy: {
-      address: "0x19ceccd6942ad38562ee10bafd44776ceb67e923",
+      address: "0x5eb3bc0a489c5a8288765d2336659ebca68fcd00",
       abi: [
         {
           type: "constructor",
@@ -374,7 +374,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     ProxyAdmin: {
-      address: "0xca8c8688914e0f7096c920146cd0ad85cd7ae8b9",
+      address: "0x99bba657f2bbc93c02d617f8ba121cb8fc104acf",
       abi: [
         {
           type: "function",
@@ -536,7 +536,7 @@ const deployedContracts = {
       },
     },
     PauserRegistry: {
-      address: "0xb0f05d25e41fbc2b52013099ed9616f1206ae21b",
+      address: "0x0e801d84fa97b50751dbf25036d067dcf18858bf",
       abi: [
         {
           type: "constructor",
@@ -657,12 +657,14 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        isPauser: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
-        unpauser: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
+        isPauser:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
+        unpauser:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol",
       },
     },
     EmptyContract: {
-      address: "0x5feaebfb4439f3516c74939a9d04e95afe82c4ae",
+      address: "0x8f86403a4de0bb5791fa46b8e795c547942fe4cf",
       abi: [
         {
           type: "function",
@@ -681,7 +683,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     ECDSAStakeRegistry: {
-      address: "0xd42912755319665397ff090fbb63b1a31ae87cee",
+      address: "0x36c02da8a0983159322a80ffe9f24b1acff8b570",
       abi: [
         {
           type: "constructor",
@@ -1511,7 +1513,7 @@ const deployedContracts = {
       },
     },
     HelloWorldServiceManager: {
-      address: "0x32eece76c2c2e8758584a83ee2f522d4788fea0f",
+      address: "0x1291be112d480055dafd8a610b7d1e203891c274",
       abi: [
         {
           type: "constructor",
@@ -1602,7 +1604,8 @@ const deployedContracts = {
                 {
                   name: "strategiesAndMultipliers",
                   type: "tuple[]",
-                  internalType: "struct IRewardsCoordinator.StrategyAndMultiplier[]",
+                  internalType:
+                    "struct IRewardsCoordinator.StrategyAndMultiplier[]",
                   components: [
                     {
                       name: "strategy",
@@ -2130,25 +2133,42 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        avsDirectory: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        createAVSRewardsSubmission: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        deregisterOperatorFromAVS: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        getOperatorRestakedStrategies: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        getRestakeableStrategies: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        owner: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        registerOperatorToAVS: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        renounceOwnership: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        stakeRegistry: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        transferOwnership: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
-        updateAVSMetadataURI: "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        avsDirectory:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        createAVSRewardsSubmission:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        deregisterOperatorFromAVS:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        getOperatorRestakedStrategies:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        getRestakeableStrategies:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        owner:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        registerOperatorToAVS:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        renounceOwnership:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        stakeRegistry:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        transferOwnership:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
+        updateAVSMetadataURI:
+          "lib/eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol",
         createNewTask: "contracts/IHelloWorldServiceManager.sol",
         respondToTask: "contracts/IHelloWorldServiceManager.sol",
-        pause: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
-        pauseAll: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
-        paused: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
-        pauserRegistry: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
-        setPauserRegistry: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
-        unpause: "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        pause:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        pauseAll:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        paused:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        pauserRegistry:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        setPauserRegistry:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
+        unpause:
+          "lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/permissions/Pausable.sol",
       },
     },
   },
