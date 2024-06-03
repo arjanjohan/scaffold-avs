@@ -1,13 +1,13 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 Scaffold-ETH 2 Eigenlayer
 
 <h4 align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 An open-source, up-to-date toolkit for building Eigenlayer AVM's on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy AMV smart contracts and build user interfaces that interact with those AVM contracts.
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
+⚙️ Built using Eigenlayer, NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
 
 - ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
 - 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
@@ -66,15 +66,14 @@ Run smart contract test with `yarn foundry:test`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/foundry/script`
 
-
 ## Documentation
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+Visit [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+To know more about its features, check out [the Scaffold-ETH website](https://scaffoldeth.io).
 
-## Contributing to Scaffold-ETH 2
+## Team
 
-We welcome contributions to Scaffold-ETH 2!
+This project is made for the Encode Club EigenLayer Hackathon and AVS MicroHacks Hackathon by:
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+- [arjanjohan](https://x.com/arjanjohan/)
