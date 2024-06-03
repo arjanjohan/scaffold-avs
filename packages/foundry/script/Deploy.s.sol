@@ -97,14 +97,14 @@ contract DeployScript is ScaffoldETHDeploy, Utils {
             baseStrategyImplementation,
             strategyManager
         );
-        // // _deployHelloWorldContracts(
-        // //     delegationManager,
-        // //     avsDirectory,
-        // //     erc20MockStrategy,
-        // //     helloWorldCommunityMultisig,
-        // //     helloWorldPauser
-        // // );
-        // vm.stopBroadcast();
+        _deployHelloWorldContracts(
+            delegationManager,
+            avsDirectory,
+            erc20MockStrategy,
+            helloWorldCommunityMultisig,
+            helloWorldPauser
+        );
+        vm.stopBroadcast();
         /**
          * This function generates the file containing the contracts Abi definitions.
          * These definitions are used to derive the types needed in the custom scaffold-eth hooks, for example.
