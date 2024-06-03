@@ -85,6 +85,7 @@ contract ERC20Mock is Context, IERC20 {
         address owner,
         address spender
     ) public view virtual override returns (uint256) {
+        uint256 currentAllowance = _allowances[owner][spender];
         return _allowances[owner][spender];
     }
 
