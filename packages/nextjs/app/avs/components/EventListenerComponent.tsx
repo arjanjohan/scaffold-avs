@@ -1,25 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+// Adjust the import path according to your project structure
+import { EventsTable } from "./EventsTable";
+import { PaginationButton } from "./PaginationButton";
 import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth/useScaffoldEventHistory";
-import { useScaffoldWatchContractEvent } from "~~/hooks/scaffold-eth/useScaffoldWatchContractEvent";
+
+// Adjust the import path according to your project structure
 
 const EventListenerComponent: React.FC = () => {
-  // const [events, setEvents] = useState<Array<{ taskIndex: number; name: string; taskCreatedBlock: number }>>([]);
-
-  // useScaffoldWatchContractEvent({
-  //   contractName: "HelloWorldServiceManager",
-  //   eventName: "NewTaskCreated",
-  //   onLogs: logs => {
-  //     logs.map(log => {
-  //       const { taskIndex, task } = log.args;
-  //       setEvents(prevEvents => [
-  //         ...prevEvents,
-  //         { taskIndex, name: task.name, taskCreatedBlock: task.taskCreatedBlock },
-  //       ]);
-  //     });
-  //   },
-  // });
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const ITEMS_PER_PAGE = 5; // This should match the ITEMS_PER_PAGE from the PaginationButton component
 
   const {
     data: events,
@@ -31,24 +22,20 @@ const EventListenerComponent: React.FC = () => {
     fromBlock: 100n,
   });
 
+  // Pagination logic
+  const totalItems = events ? events.length : 0;
+  const currentEvents = events ? events.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE) : [];
+  console.log("currentEvents", currentEvents);
+
   return (
     <div className="w-full max-w-4xl bg-gray-100 p-6 rounded-lg shadow-md">
+      {eventsLoading && <p>Loading events...</p>}
+      {eventsError && <p>Error loading events: {eventsError.message}</p>}
       {events && events.length > 0 ? (
-        <ul>
-          {events.map((event, index) => (
-            <li key={index} className="mb-4">
-              <p>
-                <strong>Task Index:</strong> {event.args.taskIndex}
-              </p>
-              <p>
-                <strong>Task Name:</strong> {event.args.task.name}
-              </p>
-              <p>
-                <strong>Task Created Block:</strong> {event.args.task.taskCreatedBlock}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <>
+          <EventsTable events={currentEvents} />
+          <PaginationButton currentPage={currentPage} totalItems={totalItems} setCurrentPage={setCurrentPage} />
+        </>
       ) : (
         <p>No events found.</p>
       )}
