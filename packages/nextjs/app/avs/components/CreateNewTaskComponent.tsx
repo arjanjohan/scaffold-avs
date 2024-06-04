@@ -17,6 +17,7 @@ function generateRandomName(): string {
   return randomName;
 }
 
+// TODO: Remove hardcoded chainid
 const avsContractAddress = deployedContracts[31337].HelloWorldServiceManager.address;
 const abi = deployedContracts[31337].HelloWorldServiceManager.abi;
 
@@ -49,9 +50,8 @@ const CreateNewTaskComponent: React.FC = () => {
         console.error("Private key is required for spamming tasks");
         return;
       }
-      console.log("Creating task with spam...", targetNetwork);
+
       const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls[0].http[0]);
-      console.log("Provider", provider);
       const wallet = new ethers.Wallet(privateKey, provider);
 
       const contract = new ethers.Contract(avsContractAddress, abi, wallet);
