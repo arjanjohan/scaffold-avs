@@ -49,10 +49,10 @@ const RegisterOperatorEL: React.FC = () => {
       ) : (
         <p className="m-0">
           {isOperator ? (
-            "✅ You are registered as operator on EL."
+            <p>✅ You are registered as operator on EL."</p>
           ) : (
             <button onClick={registerOperator} className="btn btn-primary btn-sm">
-              Register Operator
+              Register Operator on EL
             </button>
           )}
         </p>
