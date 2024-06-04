@@ -20,6 +20,7 @@ const EventListenerComponent: React.FC = () => {
     contractName: "HelloWorldServiceManager",
     eventName: "NewTaskCreated",
     fromBlock: 100n,
+    // watch: true,
   });
 
   // Pagination logic

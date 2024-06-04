@@ -1,14 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTask } from "../context/TaskContext";
 import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 const RespondToTaskComponent: React.FC = () => {
-  const [taskName, setTaskName] = useState<string>("EigenWorld");
-  const [taskIndex, setTaskIndex] = useState<number>(0);
-  const [taskCreatedBlock, setTaskCreatedBlock] = useState<number>(0);
+  const { task } = useTask();
+  const [taskName, setTaskName] = useState<string>(task.taskName);
+  const [taskIndex, setTaskIndex] = useState<number>(task.taskIndex);
+  const [taskCreatedBlock, setTaskCreatedBlock] = useState<number>(task.taskCreatedBlock);
+  const [messageToSign, setMessageToSign] = useState<string>("");
+
+  useEffect(() => {
+    setTaskName(task.taskName);
+    setTaskIndex(task.taskIndex);
+    setTaskCreatedBlock(task.taskCreatedBlock);
+    if (task.taskName) {
+      setMessageToSign(`Hello, ${task.taskName}`);
+    } else {
+      setMessageToSign("");
+    }
+  }, [task]);
+
   const { writeContractAsync: respondToTask, isPending } = useScaffoldWriteContract("HelloWorldServiceManager");
   const { chain } = useAccount();
   const { targetNetwork } = useTargetNetwork();
@@ -56,6 +71,14 @@ const RespondToTaskComponent: React.FC = () => {
         value={taskCreatedBlock}
         onChange={e => setTaskCreatedBlock(Number(e.target.value))}
         placeholder="Task Created Block"
+        className="px-4 py-2 border rounded-md mb-4"
+      />
+
+      <input
+        type="text"
+        value={messageToSign}
+        onChange={e => setMessageToSign(e.target.value)}
+        placeholder="Message to sign"
         className="px-4 py-2 border rounded-md mb-4"
       />
 

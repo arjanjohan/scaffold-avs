@@ -51,7 +51,7 @@ const CreateNewTaskComponent: React.FC = () => {
         return;
       }
 
-      const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls[0].http[0]);
+      const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
       const wallet = new ethers.Wallet(privateKey, provider);
 
       const contract = new ethers.Contract(avsContractAddress, abi, wallet);
