@@ -5,7 +5,7 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building Eigenlayer AVM's on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy AMV smart contracts and build user interfaces that interact with those AVM contracts.
+🧪 An open-source, up-to-date toolkit for building Eigenlayer AVM's on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy AMV smart contracts and build user interfaces that interact with those AVM contracts. This repo includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts, and a basic frontend to interact with this AVS.
 
 ⚙️ Built using Eigenlayer, NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
 
@@ -39,21 +39,18 @@ yarn install
 2. Make sure Docker is running
 
 3. Run a local network in the first terminal:
+<!-- TODO: make a yarn command for this -->
 
 ```
 make start-chain-with-contracts-deployed
 ```
 
-<!-- make a yarn command for this -->
-
 This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
 
-4. On a second terminal, deploy the test contract and setup the AVS software:
-<!-- TODO: make start-operator doesnt work here, make new script? -->
+4. On a second terminal, deploy the test contracts:
 
 ```
 yarn deploy
-make start-operator
 ```
 
 This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
@@ -66,6 +63,9 @@ yarn start
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
+6. Sign in as the operator and register with EigenLayer and AVS on the frontend.
+   (The `make start-operator` from the original Hello World AVS is not working. I will fix this later.)
+
 Run smart contract test with `yarn foundry:test`
 
 - Edit your smart contract `YourContract.sol` in `packages/foundry/contracts`
@@ -76,12 +76,12 @@ Run smart contract test with `yarn foundry:test`
 
 This project is a work in progress. Here is a list of things that I still need to do:
 
-- Replace Makefile by yarn commands for:
+- Fix makefile or replace by other scripts:
   - start-chain-with-contracts-deployed
   - start-operator
   - spam-tasks
 - Migrate project to hardhat
-- Prefund operator wallet with funds
+- Prefund a new operator wallet
 
 ## Documentation
 
