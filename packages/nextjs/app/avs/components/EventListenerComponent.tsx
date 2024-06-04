@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth/useScaffoldEventHistory";
 import { useScaffoldWatchContractEvent } from "~~/hooks/scaffold-eth/useScaffoldWatchContractEvent";
 
-const EventListener: React.FC = () => {
+const EventListenerComponent: React.FC = () => {
   const [events, setEvents] = useState<Array<{ taskIndex: number; name: string; taskCreatedBlock: number }>>([]);
 
   useScaffoldWatchContractEvent({
@@ -45,4 +46,4 @@ const EventListener: React.FC = () => {
   );
 };
 
-export default EventListener;
+export default EventListenerComponent;

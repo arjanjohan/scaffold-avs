@@ -72,6 +72,17 @@ Run smart contract test with `yarn foundry:test`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/foundry/script`
 
+## Next steps
+
+This project is a work in progress. Here is a list of things that I still need to do:
+
+- Replace Makefile by yarn commands for:
+  - start-chain-with-contracts-deployed
+  - start-operator
+  - spam-tasks
+- Migrate project to hardhat
+- Prefund operator wallet with funds
+
 ## Documentation
 
 Visit [Scaffold-ETH 2 docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.

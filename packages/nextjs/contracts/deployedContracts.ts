@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     ERC20Mock: {
-      address: "0x5f3f1dbd7b74c6b46e8c44f98792a1daf8d69154",
+      address: "0x998abeb3e57409262ae5b751f60747921b33613e",
       abi: [
         {
           type: "function",
@@ -224,7 +224,7 @@ const deployedContracts = {
       },
     },
     TransparentUpgradeableProxy: {
-      address: "0xc351628eb244ec633d5f21fbd6621e1a683b1181",
+      address: "0x5eb3bc0a489c5a8288765d2336659ebca68fcd00",
       abi: [
         {
           type: "constructor",
@@ -374,7 +374,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     ProxyAdmin: {
-      address: "0x82e01223d51eb87e16a03e24687edf0f294da6f1",
+      address: "0x99bba657f2bbc93c02d617f8ba121cb8fc104acf",
       abi: [
         {
           type: "function",
@@ -536,7 +536,7 @@ const deployedContracts = {
       },
     },
     PauserRegistry: {
-      address: "0x2bdcc0de6be1f7d2ee689a0342d76f52e8efaba3",
+      address: "0x0e801d84fa97b50751dbf25036d067dcf18858bf",
       abi: [
         {
           type: "constructor",
@@ -664,7 +664,7 @@ const deployedContracts = {
       },
     },
     EmptyContract: {
-      address: "0x7969c5ed335650692bc04293b07f5bf2e7a673c0",
+      address: "0x8f86403a4de0bb5791fa46b8e795c547942fe4cf",
       abi: [
         {
           type: "function",
@@ -683,7 +683,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     ECDSAStakeRegistry: {
-      address: "0xfd471836031dc5108809d173a067e8486b9047a3",
+      address: "0x36c02da8a0983159322a80ffe9f24b1acff8b570",
       abi: [
         {
           type: "constructor",
@@ -1513,7 +1513,7 @@ const deployedContracts = {
       },
     },
     HelloWorldServiceManager: {
-      address: "0xb0d4afd8879ed9f52b28595d31b441d079b2ca07",
+      address: "0x1291be112d480055dafd8a610b7d1e203891c274",
       abi: [
         {
           type: "constructor",
