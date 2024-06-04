@@ -36,7 +36,7 @@ const CreateNewTask: React.FC = () => {
         className="px-4 py-2 border rounded-md"
       />
 
-      <button className="btn btn-secondary btn-sm" disabled={writeDisabled || isPending} onClick={handleCreateTask}>
+      <button className="btn btn-primary btn-sm" disabled={writeDisabled || isPending} onClick={handleCreateTask}>
         {isPending && <span className="loading loading-spinner loading-xs"></span>}
         {isPending ? "Creating..." : "Create Task"}
       </button>

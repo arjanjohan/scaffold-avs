@@ -11,15 +11,9 @@ const RegisterOperatorAVS: React.FC = () => {
   const { writeContractAsync: stakeRegistry } = useScaffoldWriteContract("ECDSAStakeRegistry");
 
   // TODO: store this globally?
-  const { data: isOperator, isLoading: isOperatorLoading } = useScaffoldReadContract({
-    contractName: "DelegationManager",
-    functionName: "isOperator",
-    args: [address],
-  });
-
-  const { data: isDelegated, isLoading: isDelegatedLoading } = useScaffoldReadContract({
-    contractName: "DelegationManager",
-    functionName: "isDelegated",
+  const { data: isOperatorRegistered, isLoading: isOperatorRegisteredLoading } = useScaffoldReadContract({
+    contractName: "ECDSAStakeRegistry",
+    functionName: "operatorRegistered",
     args: [address],
   });
 
@@ -68,25 +62,19 @@ const RegisterOperatorAVS: React.FC = () => {
 
   return (
     <div className="mt-8">
-      {isDelegatedLoading ? (
+      {isOperatorRegisteredLoading ? (
         <span className="loading loading-spinner"></span>
       ) : (
         <p className="m-0">
-          {isDelegated ? (
-            // <p>"Address X is registered as operator with AVS"</p>
-            <button
-              disabled={!address}
-              onClick={deregisterOperator}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md"
-            >
-              Deregister Operator
-            </button>
+          {isOperatorRegistered ? (
+            <div>
+              <p>✅ You are registered as operator with AVS</p>
+              <button disabled={!address} onClick={deregisterOperator} className="btn btn-primary btn-sm">
+                Deregister Operator
+              </button>
+            </div>
           ) : (
-            <button
-              disabled={!address}
-              onClick={registerOperator}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md"
-            >
+            <button disabled={!address} onClick={registerOperator} className="btn btn-primary btn-sm">
               Register Operator
             </button>
           )}
