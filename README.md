@@ -1,4 +1,4 @@
-# 🏗 Scaffold-ETH 2 Eigenlayer
+# 🏗 Scaffold-AVS
 
 <h4 align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
@@ -27,32 +27,38 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+To get started with Scaffold-AVS, follow the steps below:
 
 1. Install dependencies if it was skipped in CLI:
 
 ```
-cd my-dapp-example
+cd scaffold-avs
 yarn install
 ```
 
-2. Run a local network in the first terminal:
+2. Make sure Docker is running
+
+3. Run a local network in the first terminal:
 
 ```
-yarn chain
+make start-chain-with-contracts-deployed
 ```
+
+<!-- make a yarn command for this -->
 
 This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
 
-3. On a second terminal, deploy the test contract:
+4. On a second terminal, deploy the test contract and setup the AVS software:
+<!-- TODO: make start-operator doesnt work here, make new script? -->
 
 ```
 yarn deploy
+make start-operator
 ```
 
 This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
 
-4. On a third terminal, start your NextJS app:
+5. On a third terminal, start your NextJS app:
 
 ```
 yarn start
