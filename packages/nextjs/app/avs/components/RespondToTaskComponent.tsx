@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
@@ -12,15 +12,14 @@ const RespondToTaskComponent: React.FC = () => {
   const { writeContractAsync: respondToTask, isPending } = useScaffoldWriteContract("HelloWorldServiceManager");
   const { chain } = useAccount();
   const { targetNetwork } = useTargetNetwork();
+  const { signMessageAsync } = useSignMessage();
 
   const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
   const handleRespondToTask = async () => {
     try {
       const message = `Hello, ${taskName}`;
-      const messageHash = ethers.utils.solidityKeccak256(["string"], [message]);
-      const messageBytes = ethers.utils.arrayify(messageHash);
-      const signature = await ethers.Wallet.createRandom().signMessage(messageBytes);
+      const signature = await signMessageAsync({ message: message });
 
       console.log(`Signing and responding to task ${taskIndex}`);
 

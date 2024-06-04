@@ -38,7 +38,7 @@ const EventListenerPage: NextPage = () => {
             <div className="bg-base-300 rounded-3xl px-6 lg:px-8 py-4 shadow-lg shadow-base-300">
               <div className="flex">
                 <div className="flex flex-col gap-1">
-                  <span className="font-bold">Respond To Task</span>
+                  <span className="font-bold">Respond To Tasks</span>
                 </div>
               </div>
 
