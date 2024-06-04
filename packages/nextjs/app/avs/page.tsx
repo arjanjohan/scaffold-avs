@@ -2,10 +2,44 @@
 
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
+import { useAccount } from "wagmi";
+import { useScaffoldContract, useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useScaffoldWatchContractEvent } from "~~/hooks/scaffold-eth/useScaffoldWatchContractEvent";
 
 const EventListenerPage: NextPage = () => {
   const [events, setEvents] = useState<Array<{ taskIndex: number; name: string; taskCreatedBlock: number }>>([]);
+  const [registrationStatus, setRegistrationStatus] = useState<string>("");
+
+  const { address } = useAccount();
+
+  const { writeContractAsync: delegationManager } = useScaffoldWriteContract("DelegationManager");
+
+  const { writeContractAsync: stakeRegistry } = useScaffoldWriteContract("StakeRegistry");
+
+  const registerOperator = async () => {
+    if (!address) {
+      setRegistrationStatus("No address available");
+      return;
+    }
+
+    try {
+      setRegistrationStatus("Registering operator...");
+
+      const tx1 = await delegationManager({
+        functionName: "registerAsOperator",
+        args: [
+          {
+            earningsReceiver: address,
+            delegationApprover: "0x0000000000000000000000000000000000000000",
+            stakerOptOutWindowBlocks: 0,
+          },
+          "0x",
+        ],
+      });
+    } catch (error) {
+      setRegistrationStatus(`Error registering operator: ${error.message}`);
+    }
+  };
 
   useScaffoldWatchContractEvent({
     contractName: "HelloWorldServiceManager",
@@ -44,6 +78,12 @@ const EventListenerPage: NextPage = () => {
         ) : (
           <p>No events found.</p>
         )}
+      </div>
+      <div className="mt-8">
+        <button onClick={registerOperator} className="px-6 py-2 bg-blue-600 text-white rounded-md">
+          Register Operator
+        </button>
+        {registrationStatus && <p className="mt-4">{registrationStatus}</p>}
       </div>
     </div>
   );
