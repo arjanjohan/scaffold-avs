@@ -92,7 +92,7 @@ const CreateNewTaskComponent: React.FC = () => {
       />
 
       <div className="flex items-center mb-4">
-        <input type="checkbox" checked={spamTasks} onChange={() => setSpamTasks(!spamTasks)} className="mr-2" />
+        <input type="checkbox" checked={spamTasks} onChange={() => setSpamTasks(!spamTasks)} className="toggle" />
         <label>Spam Tasks</label>
       </div>
 
