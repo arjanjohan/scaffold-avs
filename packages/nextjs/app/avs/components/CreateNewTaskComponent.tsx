@@ -112,8 +112,6 @@ const CreateNewTaskComponent: React.FC = () => {
         {isPending && <span className="loading loading-spinner loading-xs"></span>}
         {isPending ? "Creating..." : "Create Task"}
       </button>
-
-      {status && <p className="mt-4">{status}</p>}
     </div>
   );
 };
