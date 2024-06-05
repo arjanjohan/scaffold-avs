@@ -43,7 +43,7 @@ const RegisterOperatorEL: React.FC = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div>
       {isOperatorLoading ? (
         <span className="loading loading-spinner"></span>
       ) : (

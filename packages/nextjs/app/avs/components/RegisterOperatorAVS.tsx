@@ -25,20 +25,33 @@ const RegisterOperatorAVS: React.FC = () => {
     args: [address],
   });
 
+  const [salt, setSalt] = useState<string>("0x0000000000000000000000000000000000000000000000000000000000000000");
+  const [expiry, setExpiry] = useState<number>(0);
+
   const { data: digestHash, isLoading: isDigestHashLoading } = useScaffoldReadContract({
     contractName: "AVSDirectory",
     functionName: "calculateOperatorAVSRegistrationDigestHash",
     args: [
       address,
       "0x1291Be112d480055DaFd8a610b7d1e203891C274",
-      "0x0234234234234345235243523452345324534534543534534534534234232432",
-      BigInt(Math.floor(Date.now() / 1000) + 3600),
+      "0x0000000000000000000000000000000000000000000000000000000000000000",
+      BigInt(expiry),
     ], // Example expiry, 1 hour from now
   });
 
+  const generateSaltAndExpiry = () => {
+    // const newSalt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
+    const newSalt = "0x0000000000000000000000000000000000000000000000000000000000000000";
+    const newExpiry = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
+    setSalt(newSalt);
+    setExpiry(newExpiry);
+  };
+
   const registerOperator = async () => {
     try {
+      generateSaltAndExpiry();
       console.log("digestHash", digestHash);
+
       const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
       console.log("signature", signature);
 
@@ -47,7 +60,11 @@ const RegisterOperatorAVS: React.FC = () => {
 
       const contract = new ethers.Contract(registeryContractAddress, registeryContractAbi, wallet);
       console.log("Registering operator with AVS");
-      const tx = await contract.registerOperatorWithSignature(address, signature);
+      const tx = await contract.registerOperatorWithSignature(address, {
+        signature: signature,
+        salt: salt,
+        expiry: expiry,
+      });
       await tx.wait();
       console.log("Operator registered with AVS successfully");
     } catch (error) {
@@ -68,7 +85,7 @@ const RegisterOperatorAVS: React.FC = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div>
       {isOperatorRegisteredLoading ? (
         <span className="loading loading-spinner"></span>
       ) : (

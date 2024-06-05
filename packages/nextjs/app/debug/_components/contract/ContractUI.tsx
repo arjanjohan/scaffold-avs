@@ -89,6 +89,7 @@ export const ContractUI = ({ contractName, className = "" }: ContractUIProps) =>
                   <p className="my-0 text-sm">Write</p>
                 </div>
               </div>
+
               <div className="p-5 divide-y divide-base-300">
                 <ContractWriteMethods
                   deployedContractData={deployedContractData}

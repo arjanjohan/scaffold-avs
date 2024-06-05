@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import StyledInput from "./StyledInput";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import deployedContracts from "~~/contracts/deployedContracts";
@@ -82,26 +83,24 @@ const CreateNewTaskComponent: React.FC = () => {
   }, [spamTasks, privateKey]);
 
   return (
-    <div className="mt-8">
+    <div>
+      <StyledInput
+        type="password"
+        value={privateKey}
+        onChange={e => setPrivateKey(e.target.value)}
+        name="Private Key"
+      />
+
       <div className="flex items-center mb-4">
         <input type="checkbox" checked={spamTasks} onChange={() => setSpamTasks(!spamTasks)} className="mr-2" />
         <label>Spam Tasks</label>
       </div>
 
-      <input
-        type="password"
-        value={privateKey}
-        onChange={e => setPrivateKey(e.target.value)}
-        placeholder="Private Key"
-        className="px-4 py-2 border rounded-md mb-4"
-      />
-
-      <input
+      <StyledInput
         type="text"
         value={taskName}
         onChange={e => setTaskName(e.target.value)}
-        placeholder="Task Name"
-        className="px-4 py-2 border rounded-md mb-4"
+        name="Task Name"
         disabled={spamTasks}
       />
 

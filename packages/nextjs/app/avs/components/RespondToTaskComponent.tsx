@@ -1,7 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTask } from "../context/TaskContext";
+import StyledInput from "./StyledInput";
 import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
@@ -49,37 +48,28 @@ const RespondToTaskComponent: React.FC = () => {
   };
 
   return (
-    <div className="mt-8">
-      <input
-        type="text"
-        value={taskName}
-        onChange={e => setTaskName(e.target.value)}
-        placeholder="Task Name"
-        className="px-4 py-2 border rounded-md mb-4"
-      />
+    <div>
+      <StyledInput type="text" value={taskName} onChange={e => setTaskName(e.target.value)} name="Task Name" />
 
-      <input
+      <StyledInput
         type="number"
         value={taskIndex}
         onChange={e => setTaskIndex(Number(e.target.value))}
-        placeholder="Task Index"
-        className="px-4 py-2 border rounded-md mb-4"
+        name="Task Index"
       />
 
-      <input
+      <StyledInput
         type="number"
         value={taskCreatedBlock}
         onChange={e => setTaskCreatedBlock(Number(e.target.value))}
-        placeholder="Task Created Block"
-        className="px-4 py-2 border rounded-md mb-4"
+        name="Task Created Block"
       />
 
-      <input
+      <StyledInput
         type="text"
         value={messageToSign}
         onChange={e => setMessageToSign(e.target.value)}
-        placeholder="Message to sign"
-        className="px-4 py-2 border rounded-md mb-4"
+        name="Message to sign"
       />
 
       <button className="btn btn-primary btn-sm" disabled={writeDisabled || isPending} onClick={handleRespondToTask}>
