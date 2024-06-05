@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SigningKey, ethers } from "ethers";
+import { ethers } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import externalContracts from "~~/contracts/externalContracts";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
@@ -12,10 +12,11 @@ const registeryContractAddress = externalContracts[31337].ECDSAStakeRegistry.add
 const registeryContractAbi = externalContracts[31337].ECDSAStakeRegistry.abi;
 const registryCoordinatorPrivateKey = "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d";
 
-const HelloWorldServiceManagerAddress = "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB";
+// const HelloWorldServiceManagerAddress = "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"; // Example address
+const HelloWorldServiceManagerAddress = externalContracts[31337].HelloWorldServiceManager.address; // deployed address
 
 const salt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
-const expiry = 1717599325n;
+const expiry = 1818599325n;
 
 const RegisterOperatorAVS: React.FC = () => {
   const { address } = useAccount();
@@ -33,28 +34,20 @@ const RegisterOperatorAVS: React.FC = () => {
   const { data: digestHash, isLoading: isDigestHashLoading } = useScaffoldReadContract({
     contractName: "AVSDirectory",
     functionName: "calculateOperatorAVSRegistrationDigestHash",
-    args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry, 1 hour from now
+    args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry
   });
-
-  // const generateSaltAndExpiry = () => {
-  //   // const newSalt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
-  //   const newSalt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
-  //   const newExpiry = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
-  //   setSalt(newSalt);
-  //   setExpiry(newExpiry);
-  // };
 
   const registerOperator = async () => {
     try {
       let operatorSignature = {
         expiry: expiry,
         salt: salt,
-        signature: "",
+        signature: "" as `0x${string}`,
       };
 
-      const signingKey = new SigningKey(registryCoordinatorPrivateKey);
-      const signature = signingKey.sign(digestHash ? digestHash : "");
-      operatorSignature.signature = ethers.Signature.from(signature).serialized;
+      const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
+      operatorSignature.signature = `0x${signature.slice(2)}` as `0x${string}`;
+      console.log("signature:", signature);
       console.log("Operator signature:", operatorSignature);
 
       const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
@@ -67,8 +60,16 @@ const RegisterOperatorAVS: React.FC = () => {
       );
 
       console.log("Registering operator with AVS");
-      const tx = await registeryContract.registerOperatorWithSignature(address, operatorSignature);
-      await tx.wait();
+      console.log("Operator address:", address);
+      console.log("Operator signature:", operatorSignature);
+      await stakeRegistry({
+        functionName: "registerOperatorWithSignature",
+        args: [operatorSignature, address],
+      });
+
+      // const tx = await registeryContract.registerOperatorWithSignature(operatorSignature, address);
+      // await tx.wait();
+
       console.log("Operator registered with AVS successfully");
     } catch (error) {
       console.error("Error registering operator: ", error);

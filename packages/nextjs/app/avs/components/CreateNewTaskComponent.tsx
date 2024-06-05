@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import StyledInput from "./StyledInput";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import deployedContracts from "~~/contracts/deployedContracts";
+import externalContracts from "~~/contracts/externalContracts";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
@@ -19,8 +19,8 @@ function generateRandomName(): string {
 }
 
 // TODO: Remove hardcoded chainid
-const avsContractAddress = deployedContracts[31337].HelloWorldServiceManager.address;
-const abi = deployedContracts[31337].HelloWorldServiceManager.abi;
+const avsContractAddress = externalContracts[31337].HelloWorldServiceManager.address;
+const abi = externalContracts[31337].HelloWorldServiceManager.abi;
 
 const CreateNewTaskComponent: React.FC = () => {
   const [taskName, setTaskName] = useState<string>("");
