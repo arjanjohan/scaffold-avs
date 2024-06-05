@@ -1,12 +1,9 @@
 "use client";
 
 import { useState } from "react";
-// Adjust the import path according to your project structure
 import { EventsTable } from "./EventsTable";
 import { PaginationButton } from "./PaginationButton";
 import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth/useScaffoldEventHistory";
-
-// Adjust the import path according to your project structure
 
 const EventListenerComponent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);

@@ -31,7 +31,6 @@ const EventListenerPage: NextPage = () => {
                 <div className="flex">
                   <div className="flex flex-col gap-1">
                     <span className="font-bold">Operator Dashboard</span>
-                    {/* <Address address={deployedContractData.address} /> */}
                     <RegisterOperatorEL />
                     <RegisterOperatorAVS />
                   </div>

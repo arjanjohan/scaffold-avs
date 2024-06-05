@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ethers } from "ethers";
+import { SigningKey, ethers } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import externalContracts from "~~/contracts/externalContracts";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
@@ -11,6 +11,11 @@ import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 const registeryContractAddress = externalContracts[31337].ECDSAStakeRegistry.address;
 const registeryContractAbi = externalContracts[31337].ECDSAStakeRegistry.abi;
 const registryCoordinatorPrivateKey = "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d";
+
+const HelloWorldServiceManagerAddress = "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB";
+
+const salt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
+const expiry = 1717599325n;
 
 const RegisterOperatorAVS: React.FC = () => {
   const { address } = useAccount();
@@ -25,46 +30,44 @@ const RegisterOperatorAVS: React.FC = () => {
     args: [address],
   });
 
-  const [salt, setSalt] = useState<string>("0x0000000000000000000000000000000000000000000000000000000000000000");
-  const [expiry, setExpiry] = useState<number>(0);
-
   const { data: digestHash, isLoading: isDigestHashLoading } = useScaffoldReadContract({
     contractName: "AVSDirectory",
     functionName: "calculateOperatorAVSRegistrationDigestHash",
-    args: [
-      address,
-      "0x1291Be112d480055DaFd8a610b7d1e203891C274",
-      "0x0000000000000000000000000000000000000000000000000000000000000000",
-      BigInt(expiry),
-    ], // Example expiry, 1 hour from now
+    args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry, 1 hour from now
   });
 
-  const generateSaltAndExpiry = () => {
-    // const newSalt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
-    const newSalt = "0x0000000000000000000000000000000000000000000000000000000000000000";
-    const newExpiry = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
-    setSalt(newSalt);
-    setExpiry(newExpiry);
-  };
+  // const generateSaltAndExpiry = () => {
+  //   // const newSalt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
+  //   const newSalt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
+  //   const newExpiry = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
+  //   setSalt(newSalt);
+  //   setExpiry(newExpiry);
+  // };
 
   const registerOperator = async () => {
     try {
-      generateSaltAndExpiry();
-      console.log("digestHash", digestHash);
+      let operatorSignature = {
+        expiry: expiry,
+        salt: salt,
+        signature: "",
+      };
 
-      const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
-      console.log("signature", signature);
+      const signingKey = new SigningKey(registryCoordinatorPrivateKey);
+      const signature = signingKey.sign(digestHash ? digestHash : "");
+      operatorSignature.signature = ethers.Signature.from(signature).serialized;
+      console.log("Operator signature:", operatorSignature);
 
       const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
-      const wallet = new ethers.Wallet(registryCoordinatorPrivateKey, provider);
 
-      const contract = new ethers.Contract(registeryContractAddress, registeryContractAbi, wallet);
+      const registryCoordinatorWallet = new ethers.Wallet(registryCoordinatorPrivateKey, provider);
+      const registeryContract = new ethers.Contract(
+        registeryContractAddress,
+        registeryContractAbi,
+        registryCoordinatorWallet,
+      );
+
       console.log("Registering operator with AVS");
-      const tx = await contract.registerOperatorWithSignature(address, {
-        signature: signature,
-        salt: salt,
-        expiry: expiry,
-      });
+      const tx = await registeryContract.registerOperatorWithSignature(address, operatorSignature);
       await tx.wait();
       console.log("Operator registered with AVS successfully");
     } catch (error) {
@@ -92,7 +95,7 @@ const RegisterOperatorAVS: React.FC = () => {
         <p className="m-0">
           {isOperatorRegistered ? (
             <div>
-              <p>✅ You are registered as operator with AVS</p>
+              "✅ You are registered as operator with AVS"
               <button disabled={!address} onClick={deregisterOperator} className="btn btn-primary btn-sm">
                 Deregister Operator with AVS
               </button>

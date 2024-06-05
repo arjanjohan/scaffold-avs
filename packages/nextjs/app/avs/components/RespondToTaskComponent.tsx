@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTask } from "../context/TaskContext";
 import StyledInput from "./StyledInput";
+import { sign } from "crypto";
+import { ethers, getBytes, keccak256, toQuantity, toUtf8Bytes } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
@@ -23,20 +25,29 @@ const RespondToTaskComponent: React.FC = () => {
     }
   }, [task]);
 
-  const { writeContractAsync: respondToTask, isPending } = useScaffoldWriteContract("HelloWorldServiceManager");
   const { chain } = useAccount();
   const { targetNetwork } = useTargetNetwork();
+  const { writeContractAsync: respondToTask, isPending } = useScaffoldWriteContract("HelloWorldServiceManager");
   const { signMessageAsync } = useSignMessage();
 
+  const byteArrayToString = (byteArray: Uint8Array) => {
+    return Array.from(byteArray)
+      .map(byte => byte.toString())
+      .join("");
+  };
   const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
   const handleRespondToTask = async () => {
     try {
       const message = `Hello, ${taskName}`;
-      const signature = await signMessageAsync({ message: message });
-
+      const messageHash = keccak256(toUtf8Bytes(message));
+      const signature = await signMessageAsync({ message: messageHash });
+      console.log("messageHash:", messageHash);
+      console.log("signature:", signature);
       console.log(`Signing and responding to task ${taskIndex}`);
 
+      const newSig = ethers.Signature.from(signature);
+      console.log("newSig", newSig);
       await respondToTask({
         functionName: "respondToTask",
         args: [{ name: taskName, taskCreatedBlock: taskCreatedBlock }, taskIndex, signature],

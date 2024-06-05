@@ -81,7 +81,13 @@ This project is a work in progress. Here is a list of things that I still need t
   - start-operator
   - spam-tasks
 - Migrate project to hardhat
-- Prefund a new operator wallet
+- Prefund a new operator wallet in deploy script
+- Fix EventListenerComponent (invalid hook call)
+- Fix RegisterOperatorAVS
+  - frontend errors
+  - signature errors
+- Fix RespondToTasks
+  - signature errors
 
 ## Documentation
 
