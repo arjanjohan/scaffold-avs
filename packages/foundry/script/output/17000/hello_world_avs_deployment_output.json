@@ -1,0 +1,10 @@
+{
+  "addresses": {
+    "ECDSAStakeRegistry": "0xFD471836031dc5108809D173A067e8486B9047A3",
+    "ECDSAStakeRegistryImplementation": "0xcbEAF3BDe82155F56486Fb5a1072cb8baAf547cc",
+    "HelloWorldServiceManagerImplementation": "0x162A433068F51e18b7d13932F27e66a3f99E6890",
+    "HelloWorldServiceManagerProxy": "0xc351628EB244ec633d5f21fBD6621e1a683B1181",
+    "erc20Mock": "0x61a5ca3b76878c54a0a9d983ed8ad82c6d27621d",
+    "erc20MockStrategy": "0xCD8a1C3ba11CF5ECfa6267617243239504a98d90"
+  }
+}
