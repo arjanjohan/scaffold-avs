@@ -78,14 +78,16 @@ This project is a work in progress. Here is a list of things that I still need t
   - start-chain-with-contracts-deployed
   - start-operator
   - spam-tasks
-- Migrate project to hardhat
-- Fix EventListenerComponent (invalid hook call)
+- Fix EventListenerComponent (invalid hook call for loading status)
 - Fix Signature errors (Register with AVS and Respond to task)
+- Add auto respond to task feature
+- Migrate project to hardhat
 
 ## Links
 
 - [Github]()
 - [Social media post]()
+-
 
 ## Team
 
