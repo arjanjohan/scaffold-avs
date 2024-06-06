@@ -13,7 +13,7 @@ const EventListenerComponent: React.FC = () => {
   const {
     data: events,
     error: eventsError,
-    isLoading: eventsLoading,
+    // isLoading: eventsLoading,
   } = useScaffoldEventHistory({
     contractName: "HelloWorldServiceManager",
     eventName: "NewTaskCreated",
@@ -28,7 +28,7 @@ const EventListenerComponent: React.FC = () => {
   return (
     <div className="w-full max-w-4xl bg-gray-100 p-6 rounded-lg shadow-md">
       {/* {eventsLoading && <p>Loading events...</p>} */}
-      {eventsError && <p>Error loading events: {eventsError.message}</p>}
+      {eventsError && <p>Error loading events: {eventsError}</p>}
       {events && events.length > 0 ? (
         <>
           <EventsTable events={currentEvents} />

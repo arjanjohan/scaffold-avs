@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTask } from "../context/TaskContext";
 import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
-import { sign } from "crypto";
-import { ethers, getBytes, keccak256, toQuantity, toUtf8Bytes } from "ethers";
+import { ethers, keccak256, toUtf8Bytes } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
@@ -14,8 +13,6 @@ const RespondToTaskComponent: React.FC = () => {
   const [taskIndex, setTaskIndex] = useState<number>(task.taskIndex);
   const [taskCreatedBlock, setTaskCreatedBlock] = useState<number>(task.taskCreatedBlock);
   const [messageToSign, setMessageToSign] = useState<string>("");
-
-  const [privateKey, setPrivateKey] = useState<string>("");
 
   useEffect(() => {
     setTaskName(task.taskName);
@@ -33,11 +30,6 @@ const RespondToTaskComponent: React.FC = () => {
   const { writeContractAsync: respondToTask, isPending } = useScaffoldWriteContract("HelloWorldServiceManager");
   const { signMessageAsync } = useSignMessage();
 
-  const byteArrayToString = (byteArray: Uint8Array) => {
-    return Array.from(byteArray)
-      .map(byte => byte.toString())
-      .join("");
-  };
   const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
   const handleRespondToTask = async () => {

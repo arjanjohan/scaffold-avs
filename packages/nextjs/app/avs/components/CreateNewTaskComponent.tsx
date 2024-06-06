@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
 import { ethers } from "ethers";
@@ -46,31 +46,34 @@ const CreateNewTaskComponent: React.FC = () => {
     }
   };
 
-  const handleSpamTasks = async (randomName: string) => {
-    try {
-      if (!privateKey) {
-        // TODO: add popup with error
-        // TODO: check valid private key
-        console.error("Private key is required for spamming tasks");
-        return;
+  const handleSpamTasks = useCallback(
+    async (randomName: string) => {
+      try {
+        if (!privateKey) {
+          // TODO: add popup with error
+          // TODO: check valid private key
+          console.error("Private key is required for spamming tasks");
+          return;
+        }
+
+        const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
+        const wallet = new ethers.Wallet(privateKey, provider);
+
+        const contract = new ethers.Contract(avsContractAddress, abi, wallet);
+
+        console.log(`Creating new task with name: ${randomName}`);
+        const tx = await contract.createNewTask(randomName);
+        await tx.wait();
+        console.log("Task created successfully");
+      } catch (error) {
+        console.error("Error creating task with spam:", error);
       }
-
-      const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
-      const wallet = new ethers.Wallet(privateKey, provider);
-
-      const contract = new ethers.Contract(avsContractAddress, abi, wallet);
-
-      console.log(`Creating new task with name: ${randomName}`);
-      const tx = await contract.createNewTask(randomName);
-      await tx.wait();
-      console.log("Task created successfully");
-    } catch (error) {
-      console.error("Error creating task with spam:", error);
-    }
-  };
+    },
+    [privateKey, targetNetwork.rpcUrls.default.http],
+  );
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: NodeJS.Timeout | undefined;
     if (spamTasks) {
       interval = setInterval(() => {
         const randomName = generateRandomName();
@@ -83,7 +86,7 @@ const CreateNewTaskComponent: React.FC = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [spamTasks, privateKey]);
+  }, [spamTasks, privateKey, handleSpamTasks]);
 
   return (
     <div>

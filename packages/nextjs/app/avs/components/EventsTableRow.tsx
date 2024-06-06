@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
-import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import React from "react";
 
 type Event = {
   args: {
@@ -20,7 +18,7 @@ type EventsTableRowProps = {
 
 export const EventsTableRow: React.FC<EventsTableRowProps> = ({ event, index, handleActionClick }) => {
   //   const { address } = useAccount();
-  const [responseStatus, setResponseStatus] = useState<boolean>(false);
+  const responseStatus = false;
 
   //   useEffect(() => {
   //     const fetchStatus = async () => {

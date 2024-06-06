@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTask } from "../context/TaskContext";
 import { EventsTableRow } from "./EventsTableRow";
-import { useAccount } from "wagmi";
-import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+
+// import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 type Event = {
   args: Args;
@@ -23,11 +23,11 @@ type EventsTableProps = {
 };
 
 export const EventsTable: React.FC<EventsTableProps> = ({ events }) => {
-  const { address } = useAccount();
+  // const { address } = useAccount();
   const { setTask } = useTask();
 
-  const [responseStatuses, setResponseStatuses] = useState<boolean[]>(new Array(events.length).fill(false));
-  const [loadingStatuses, setLoadingStatuses] = useState<boolean[]>(new Array(events.length).fill(true));
+  // const [responseStatuses, setResponseStatuses] = useState<boolean[]>(new Array(events.length).fill(false));
+  // const [loadingStatuses, setLoadingStatuses] = useState<boolean[]>(new Array(events.length).fill(true));
 
   const handleActionClick = (event: Event) => {
     setTask({

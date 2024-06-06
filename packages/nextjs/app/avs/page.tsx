@@ -2,26 +2,12 @@
 
 import CreateNewTaskComponent from "./components/CreateNewTaskComponent";
 import EventListenerComponent from "./components/EventListenerComponent";
-import RegisterOperatorAVS from "./components/RegisterOperatorAVS";
 import RegisterOperatorComponent from "./components/RegisterOperatorComponent";
-import RegisterOperatorEL from "./components/RegisterOperatorEL";
 import RespondToTaskComponent from "./components/RespondToTaskComponent";
 import { TaskProvider } from "./context/TaskContext";
 import type { NextPage } from "next";
 
-const EventListenerPage: NextPage = () => {
-  // return (
-  //   <div className="flex flex-col items-center justify-center min-h-screen py-2">
-  //     <h1 className="text-4xl font-bold mb-4">Event Listener</h1>
-  //     <EventListenerComponent />
-  //     <h1 className="text-4xl font-bold mb-4">Operator status</h1>
-  //     <RegisterOperatorEL />
-  //     <RegisterOperatorAVS />
-  //     <h1 className="text-4xl font-bold mb-4">Hello World Service Manager</h1>
-  //     <CreateNewTaskComponent />
-  //     <RespondToTaskComponent />
-  //   </div>
-  // );
+const AvsDashboardPage: NextPage = () => {
   return (
     <TaskProvider>
       <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
@@ -76,4 +62,4 @@ const EventListenerPage: NextPage = () => {
   );
 };
 
-export default EventListenerPage;
+export default AvsDashboardPage;

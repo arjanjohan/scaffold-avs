@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface Task {
   taskName: string;
@@ -11,9 +11,13 @@ interface TaskContextProps {
   setTask: React.Dispatch<React.SetStateAction<Task>>;
 }
 
+interface TaskProviderProps {
+  children: ReactNode;
+}
+
 const TaskContext = createContext<TaskContextProps | undefined>(undefined);
 
-export const TaskProvider: React.FC = ({ children }) => {
+export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   const [task, setTask] = useState<Task>({ taskName: "", taskIndex: 0, taskCreatedBlock: 0 });
   return <TaskContext.Provider value={{ task, setTask }}>{children}</TaskContext.Provider>;
 };
