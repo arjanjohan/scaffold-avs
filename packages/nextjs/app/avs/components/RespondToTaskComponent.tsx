@@ -15,6 +15,8 @@ const RespondToTaskComponent: React.FC = () => {
   const [taskCreatedBlock, setTaskCreatedBlock] = useState<number>(task.taskCreatedBlock);
   const [messageToSign, setMessageToSign] = useState<string>("");
 
+  const [privateKey, setPrivateKey] = useState<string>("");
+
   useEffect(() => {
     setTaskName(task.taskName);
     setTaskIndex(task.taskIndex);
@@ -93,6 +95,17 @@ const RespondToTaskComponent: React.FC = () => {
       >
         Respond to Task
       </StyledButton>
+
+      {/* <div className="mt-5 justify-end flex gap-3 mx-5">
+        <span className="self-center text-primary-content font-medium">Auto response</span>
+        <input
+          type="checkbox"
+          // checked={watchEvents}
+          // onChange={() => setWatchEvents(!watchEvents)}
+          className="toggle toggle-accent"
+        />
+      </div>
+      <StyledInput type="text" value={privateKey} onChange={e => setPrivateKey(e.target.value)} name="Private Key" /> */}
     </div>
   );
 };

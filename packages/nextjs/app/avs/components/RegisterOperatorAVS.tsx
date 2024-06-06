@@ -25,7 +25,7 @@ const RegisterOperatorAVS: React.FC = () => {
   const { writeContractAsync: stakeRegistry } = useScaffoldWriteContract("ECDSAStakeRegistry");
   const { signMessageAsync } = useSignMessage();
 
-  const { data: isOperatorRegistered, isLoading: isOperatorRegisteredLoading } = useScaffoldReadContract({
+  const { data: isOperatorAVS, isLoading: isOperatorAVSLoading } = useScaffoldReadContract({
     contractName: "ECDSAStakeRegistry",
     functionName: "operatorRegistered",
     args: [address],
@@ -37,51 +37,17 @@ const RegisterOperatorAVS: React.FC = () => {
     args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry
   });
 
-  const registerOperator = async () => {
+  const registerOperatorAVS = async () => {
     try {
-      let operatorSignature = {
-        expiry: expiry,
-        salt: salt,
-        signature: "" as `0x${string}`,
-      };
-
-      const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
-      operatorSignature.signature = `0x${signature.slice(2)}` as `0x${string}`;
-      // console.log("signature:", signature);
-      // console.log("Operator signature:", operatorSignature);
-
-      const sig1 = ethers.Signature.from(signature);
-      const sig2 = ethers.Signature.from(signature).serialized;
-
-      console.log("sig1", sig1);
-
-      const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
-
-      const registryCoordinatorWallet = new ethers.Wallet(registryCoordinatorPrivateKey, provider);
-      const registeryContract = new ethers.Contract(
-        registeryContractAddress,
-        registeryContractAbi,
-        registryCoordinatorWallet,
-      );
-
-      console.log("Registering operator with AVS");
-      console.log("Operator address:", address);
-      console.log("Operator signature:", operatorSignature);
-      // await stakeRegistry({
-      //   functionName: "registerOperatorWithSignature",
-      //   args: [operatorSignature, address],
-      // });
-
-      const tx = await registeryContract.registerOperatorWithSignature(operatorSignature, address);
-      await tx.wait();
-
-      console.log("Operator registered with AVS successfully");
+      // console.log("Registering operator...");
+      console.error("NOT IMPLEMENTED YET");
+      // console.log("Operator registered with AVS successfully");
     } catch (error) {
       console.error("Error registering operator: ", error);
     }
   };
 
-  const deregisterOperator = async () => {
+  const deregisterOperatorAVS = async () => {
     try {
       console.log("Deregistering operator...");
       await stakeRegistry({
@@ -95,19 +61,19 @@ const RegisterOperatorAVS: React.FC = () => {
 
   return (
     <div>
-      {isOperatorRegisteredLoading ? (
+      {isOperatorAVSLoading ? (
         <span className="loading loading-spinner"></span>
       ) : (
         <p className="m-0">
-          {isOperatorRegistered ? (
+          {isOperatorAVS ? (
             <div>
               "✅ You are registered as operator with AVS"
-              <button disabled={!address} onClick={deregisterOperator} className="btn btn-primary btn-sm">
+              <button disabled={!address} onClick={deregisterOperatorAVS} className="btn btn-primary btn-sm">
                 Deregister Operator with AVS
               </button>
             </div>
           ) : (
-            <button disabled={!address} onClick={registerOperator} className="btn btn-primary btn-sm">
+            <button disabled={!address} onClick={registerOperatorAVS} className="btn btn-primary btn-sm">
               Register Operator with AVS
             </button>
           )}

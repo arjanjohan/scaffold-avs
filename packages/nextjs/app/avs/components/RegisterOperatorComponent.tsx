@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import RegisterOperatorAVS from "./RegisterOperatorAVS";
+import StyledButton from "./StyledButton";
 import { ethers } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import externalContracts from "~~/contracts/externalContracts";
-//TODO: replace by deployed contracts
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 // TODO: Remove hardcoded chainid
@@ -22,9 +23,12 @@ const expiry = 1818599325n;
 const RegisterOperatorEL: React.FC = () => {
   const { address } = useAccount();
 
-  const { writeContractAsync: delegationManager } = useScaffoldWriteContract("DelegationManager");
+  const { writeContractAsync: delegationManager, isPending: isPendingDelegationManager } =
+    useScaffoldWriteContract("DelegationManager");
 
-  const { writeContractAsync: stakeRegistry } = useScaffoldWriteContract("ECDSAStakeRegistry");
+  const { writeContractAsync: stakeRegistry, isPending: isPendingStakeRegistery } =
+    useScaffoldWriteContract("ECDSAStakeRegistry");
+
   const { signMessageAsync } = useSignMessage();
 
   const { data: isOperatorEigenlayer, isLoading: isOperatorEigenlayerLoading } = useScaffoldReadContract({
@@ -99,15 +103,48 @@ const RegisterOperatorEL: React.FC = () => {
         <span className="loading loading-spinner"></span>
       ) : (
         <div>
-          <div>{isOperatorEigenlayer ? "✅ Registered on EL." : "❌ Not registered on EL."}</div>
-          <div>{isOperatorAVS ? "✅ Registered with AVS." : "❌ Not registered with AVS."}</div>
+          <div style={{ margin: "10px 0" }}>
+            {isOperatorEigenlayer ? "✅ Registered on EL." : "❌ Not registered on EL."}
+          </div>
+          <div style={{ margin: "10px 0" }}>
+            {isOperatorAVS ? "✅ Registered with AVS." : "❌ Not registered with AVS."}
+          </div>
+
           <p className="m-0">
             {isOperatorEigenlayer ? (
-              "TODO: add register with AVS button"
+              <div>
+                {isOperatorAVS ? (
+                  <StyledButton
+                    onClick={deregisterOperatorAVS}
+                    disabled={!address}
+                    isPending={isPendingStakeRegistery}
+                    className="btn-primary"
+                    pendingText="Deregistering..."
+                  >
+                    Deregister Operator with AVS
+                  </StyledButton>
+                ) : (
+                  <StyledButton
+                    onClick={registerOperatorAVS}
+                    disabled={!address}
+                    isPending={isPendingStakeRegistery}
+                    className="btn-primary"
+                    pendingText="Registering..."
+                  >
+                    Register Operator with AVS
+                  </StyledButton>
+                )}
+              </div>
             ) : (
-              <button onClick={registerOperatorEigenlayer} className="btn btn-primary btn-sm">
+              <StyledButton
+                onClick={registerOperatorEigenlayer}
+                disabled={!address}
+                isPending={isPendingDelegationManager}
+                className="btn-primary"
+                pendingText="Registering..."
+              >
                 Register Operator on EL
-              </button>
+              </StyledButton>
             )}
           </p>
         </div>
