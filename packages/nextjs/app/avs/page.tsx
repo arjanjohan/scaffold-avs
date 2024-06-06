@@ -3,6 +3,7 @@
 import CreateNewTaskComponent from "./components/CreateNewTaskComponent";
 import EventListenerComponent from "./components/EventListenerComponent";
 import RegisterOperatorAVS from "./components/RegisterOperatorAVS";
+import RegisterOperatorComponent from "./components/RegisterOperatorComponent";
 import RegisterOperatorEL from "./components/RegisterOperatorEL";
 import RespondToTaskComponent from "./components/RespondToTaskComponent";
 import { TaskProvider } from "./context/TaskContext";
@@ -31,8 +32,9 @@ const EventListenerPage: NextPage = () => {
                 <div className="flex">
                   <div className="flex flex-col gap-1">
                     <span className="font-bold">Operator Dashboard</span>
-                    <RegisterOperatorEL />
-                    <RegisterOperatorAVS />
+                    {/* <RegisterOperatorEL />
+                    <RegisterOperatorAVS /> */}
+                    <RegisterOperatorComponent />
                   </div>
                 </div>
               </div>
