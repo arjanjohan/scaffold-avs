@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
@@ -48,6 +49,8 @@ const CreateNewTaskComponent: React.FC = () => {
   const handleSpamTasks = async (randomName: string) => {
     try {
       if (!privateKey) {
+        // TODO: add popup with error
+        // TODO: check valid private key
         console.error("Private key is required for spamming tasks");
         return;
       }
@@ -84,16 +87,17 @@ const CreateNewTaskComponent: React.FC = () => {
 
   return (
     <div>
-      <StyledInput
-        type="password"
-        value={privateKey}
-        onChange={e => setPrivateKey(e.target.value)}
-        name="Private Key"
-      />
-
-      <div className="flex items-center mb-4">
-        <input type="checkbox" checked={spamTasks} onChange={() => setSpamTasks(!spamTasks)} className="toggle" />
-        <label>Spam Tasks</label>
+      <div className="flex items-start mb-4 space-x-4">
+        <div className="flex flex-col items-center w-20">
+          <span className="text-xs font-medium mb-1 leading-none">Spam tasks</span>
+          <input
+            type="checkbox"
+            checked={spamTasks}
+            onChange={() => setSpamTasks(!spamTasks)}
+            className="toggle toggle-accent"
+          />
+        </div>
+        <StyledInput type="text" value={privateKey} onChange={e => setPrivateKey(e.target.value)} name="Private Key" />
       </div>
 
       <StyledInput
@@ -104,14 +108,15 @@ const CreateNewTaskComponent: React.FC = () => {
         disabled={spamTasks}
       />
 
-      <button
-        className="btn btn-primary btn-sm"
-        disabled={writeDisabled || isPending || spamTasks}
+      <StyledButton
         onClick={handleCreateTask}
+        disabled={writeDisabled || isPending || spamTasks}
+        isPending={isPending}
+        className="btn-primary"
+        pendingText="Creating..."
       >
-        {isPending && <span className="loading loading-spinner loading-xs"></span>}
-        {isPending ? "Creating..." : "Create Task"}
-      </button>
+        Create Task
+      </StyledButton>
     </div>
   );
 };

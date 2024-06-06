@@ -10,7 +10,7 @@ import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 // TODO: Remove hardcoded chainid
 const registeryContractAddress = externalContracts[31337].ECDSAStakeRegistry.address;
 const registeryContractAbi = externalContracts[31337].ECDSAStakeRegistry.abi;
-const registryCoordinatorPrivateKey = "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d";
+const registryCoordinatorPrivateKey = "0x1a6c3bd4b4e51b98cbe6c4cefc44d8b7b49fff24e1464fd74e6f843302b8e7c4";
 
 // const HelloWorldServiceManagerAddress = "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"; // Example address
 const HelloWorldServiceManagerAddress = externalContracts[31337].HelloWorldServiceManager.address; // deployed address
@@ -47,8 +47,13 @@ const RegisterOperatorAVS: React.FC = () => {
 
       const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
       operatorSignature.signature = `0x${signature.slice(2)}` as `0x${string}`;
-      console.log("signature:", signature);
-      console.log("Operator signature:", operatorSignature);
+      // console.log("signature:", signature);
+      // console.log("Operator signature:", operatorSignature);
+
+      const sig1 = ethers.Signature.from(signature);
+      const sig2 = ethers.Signature.from(signature).serialized;
+
+      console.log("sig1", sig1);
 
       const provider = new ethers.JsonRpcProvider(targetNetwork.rpcUrls.default.http[0]);
 
@@ -62,13 +67,13 @@ const RegisterOperatorAVS: React.FC = () => {
       console.log("Registering operator with AVS");
       console.log("Operator address:", address);
       console.log("Operator signature:", operatorSignature);
-      await stakeRegistry({
-        functionName: "registerOperatorWithSignature",
-        args: [operatorSignature, address],
-      });
+      // await stakeRegistry({
+      //   functionName: "registerOperatorWithSignature",
+      //   args: [operatorSignature, address],
+      // });
 
-      // const tx = await registeryContract.registerOperatorWithSignature(operatorSignature, address);
-      // await tx.wait();
+      const tx = await registeryContract.registerOperatorWithSignature(operatorSignature, address);
+      await tx.wait();
 
       console.log("Operator registered with AVS successfully");
     } catch (error) {

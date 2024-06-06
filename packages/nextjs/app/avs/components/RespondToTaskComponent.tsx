@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTask } from "../context/TaskContext";
+import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
 import { sign } from "crypto";
 import { ethers, getBytes, keccak256, toQuantity, toUtf8Bytes } from "ethers";
@@ -83,10 +84,15 @@ const RespondToTaskComponent: React.FC = () => {
         name="Message to sign"
       />
 
-      <button className="btn btn-primary btn-sm" disabled={writeDisabled || isPending} onClick={handleRespondToTask}>
-        {isPending && <span className="loading loading-spinner loading-xs"></span>}
-        {isPending ? "Responding..." : "Respond to Task"}
-      </button>
+      <StyledButton
+        onClick={handleRespondToTask}
+        disabled={writeDisabled || isPending}
+        isPending={isPending}
+        className="btn-primary"
+        pendingText="Responding..."
+      >
+        Respond to Task
+      </StyledButton>
     </div>
   );
 };
