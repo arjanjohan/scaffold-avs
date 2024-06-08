@@ -115,7 +115,7 @@ const RegisterOperatorEL: React.FC = () => {
                     onClick={deregisterOperatorAVS}
                     disabled={!address}
                     isPending={isPendingStakeRegistery}
-                    className="btn-primary"
+                    className="btn-accent"
                     pendingText="Deregistering..."
                   >
                     Deregister Operator with AVS
@@ -125,7 +125,7 @@ const RegisterOperatorEL: React.FC = () => {
                     onClick={registerOperatorAVS}
                     disabled={!address}
                     isPending={isPendingStakeRegistery}
-                    className="btn-primary"
+                    className="btn-accent"
                     pendingText="Registering..."
                   >
                     Register Operator with AVS
@@ -137,7 +137,7 @@ const RegisterOperatorEL: React.FC = () => {
                 onClick={registerOperatorEigenlayer}
                 disabled={!address}
                 isPending={isPendingDelegationManager}
-                className="btn-primary"
+                className="btn-accent"
                 pendingText="Registering..."
               >
                 Register Operator on EL

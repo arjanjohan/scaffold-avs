@@ -97,7 +97,7 @@ const CreateNewTaskComponent: React.FC = () => {
             type="checkbox"
             checked={spamTasks}
             onChange={() => setSpamTasks(!spamTasks)}
-            className="toggle toggle-accent"
+            className="toggle toggle-primary bg-primary hover:bg-primary border-primary"
           />
         </div>
         <StyledInput type="text" value={privateKey} onChange={e => setPrivateKey(e.target.value)} name="Private Key" />
@@ -115,7 +115,7 @@ const CreateNewTaskComponent: React.FC = () => {
         onClick={handleCreateTask}
         disabled={writeDisabled || isPending || spamTasks}
         isPending={isPending}
-        className="btn-primary"
+        className="btn-accent"
         pendingText="Creating..."
       >
         Create Task

@@ -39,7 +39,7 @@ export const EventsTableRow: React.FC<EventsTableRowProps> = ({ event, index, ha
       <td className="w-2/12 md:py-4">{event.args.task.name}</td>
       <td className="w-2/12 md:py-4">{event.args.task.taskCreatedBlock}</td>
       <td className="w-1/12 md:py-4">
-        <button className="btn btn-primary btn-sm" onClick={() => handleActionClick(event)} disabled={responseStatus}>
+        <button className="btn btn-accent btn-sm" onClick={() => handleActionClick(event)} disabled={responseStatus}>
           {responseStatus ? "✅ Responded" : "Respond"}
         </button>
       </td>

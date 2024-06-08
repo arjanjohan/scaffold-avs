@@ -82,7 +82,7 @@ const RespondToTaskComponent: React.FC = () => {
         onClick={handleRespondToTask}
         disabled={writeDisabled || isPending}
         isPending={isPending}
-        className="btn-primary"
+        className="btn-accent"
         pendingText="Responding..."
       >
         Respond to Task

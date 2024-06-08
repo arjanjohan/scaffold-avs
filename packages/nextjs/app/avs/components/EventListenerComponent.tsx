@@ -26,7 +26,7 @@ const EventListenerComponent: React.FC = () => {
   const currentEvents = events ? events.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE) : [];
 
   return (
-    <div className="w-full max-w-4xl bg-gray-100 p-6 rounded-lg shadow-md">
+    <div className="w-full max-w-4xl bg-base-200 p-6 rounded-lg shadow-md">
       {/* {eventsLoading && <p>Loading events...</p>} */}
       {eventsError && <p>Error loading events: {eventsError}</p>}
       {events && events.length > 0 ? (
@@ -38,12 +38,12 @@ const EventListenerComponent: React.FC = () => {
       )}
       <div className="flex justify-between items-center mt-5">
         <div className="mt-5 justify-end flex gap-3 mx-5">
-          <span className="self-center text-primary-content font-medium">Watch events</span>
+          <span className="self-center text-accent-content font-medium">Watch events</span>
           <input
             type="checkbox"
             checked={watchEvents}
             onChange={() => setWatchEvents(!watchEvents)}
-            className="toggle toggle-accent"
+            className="toggle toggle-primary bg-primary hover:bg-primary border-primary"
           />
         </div>
         <PaginationButton currentPage={currentPage} totalItems={totalItems} setCurrentPage={setCurrentPage} />
