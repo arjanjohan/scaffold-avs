@@ -1,8 +1,7 @@
 # 🏗 Scaffold-AVS
 
 <h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
+  <a href="https://scaffold-avs.vercel.app/">Website</a>
 </h4>
 
 🔧 An open-source, up-to-date toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and a frontend dashboard to interact with this AVS.
@@ -72,7 +71,7 @@ Run smart contract test with `yarn foundry:test`
 
 ## Next steps
 
-This project is a work in progress. Here is a list of things that I still need to do:
+This project is still in progress, and here is a list of tasks I need to complete:
 
 - Fix makefile or replace by other scripts:
   - start-chain-with-contracts-deployed
@@ -83,14 +82,16 @@ This project is a work in progress. Here is a list of things that I still need t
 - Add auto respond to task feature
 - Migrate project to hardhat
 
+Contributions to the project are welcome.
+
 ## Links
 
-- [Github]()
+- [Vercel deployment](https://scaffold-avs.vercel.app/)
+- [Github](https://github.com/arjanjohan/scaffold-avs)
 - [Social media post]()
--
 
 ## Team
 
-This project is made for the Encode Club EigenLayer Hackathon and AVS MicroHacks Hackathon by:
+This project is made for the AVS MicroHacks Hackathon by:
 
 - [arjanjohan](https://x.com/arjanjohan/)
