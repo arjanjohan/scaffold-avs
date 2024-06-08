@@ -5,7 +5,7 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building Eigenlayer AVM's on the Ethereum blockchain. This repo is designed to make it easier for developers to create and deploy AVM smart contracts and build user interfaces that interact with those AVM contracts. This repo includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and a basic frontend to interact with this AVS.
+🔧 An open-source, up-to-date toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and a frontend dashboard to interact with this AVS.
 
 ⚙️ Built using Eigenlayer, NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
 
