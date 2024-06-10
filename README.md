@@ -1,7 +1,8 @@
 # 🏗 Scaffold-AVS
 
 <h4 align="center">
-  <a href="https://scaffold-avs.vercel.app/">Website</a>
+  <a href="https://scaffold-avs.vercel.app/">Website</a> |
+  <a href="https://github.com/arjanjohan/scaffold-avs">Repo</a>
 </h4>
 
 🔧 An open-source, up-to-date toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and a frontend dashboard to interact with this AVS.
@@ -66,7 +67,7 @@ yarn start
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-6. Sign in as the operator and register with EigenLayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
+6. Sign in as the operator and register with Eigenlayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
 
 Run smart contract test with `yarn foundry:test`
 
@@ -93,10 +94,10 @@ Contributions to the project are welcome.
 
 - [Vercel deployment](https://scaffold-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
-- [Social media post]()
+- [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
 
 ## Team
 
-This project is made for the AVS MicroHacks Hackathon by:
+This project is made for the EigenlayerAVS MicroHacks Hackathon by:
 
 - [arjanjohan](https://x.com/arjanjohan/)
