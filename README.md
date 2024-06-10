@@ -14,6 +14,12 @@
 - 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
+## Screenshots
+
+| Empty dashboard                   | Live dasboard                     |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
+
 ## Requirements
 
 Before you begin, you need to install the following tools:
@@ -60,12 +66,11 @@ yarn start
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-6. Sign in as the operator and register with EigenLayer and AVS on the frontend.
-   (The `make start-operator` from the original Hello World AVS is not working. I will fix this later.)
+6. Sign in as the operator and register with EigenLayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
 
 Run smart contract test with `yarn foundry:test`
 
-- Edit your smart contract `YourContract.sol` in `packages/foundry/contracts`
+- Edit your smart contract `HelloWorldServiceManager.sol` in `packages/foundry/contracts`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/foundry/script`
 
