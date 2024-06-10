@@ -43,7 +43,6 @@ yarn install
 2. Make sure Docker is running
 
 3. Run a local network in the first terminal:
-<!-- TODO: make a yarn command for this -->
 
 ```
 make start-chain-with-contracts-deployed
