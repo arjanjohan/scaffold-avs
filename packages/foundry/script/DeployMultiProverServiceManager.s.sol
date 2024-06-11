@@ -20,12 +20,13 @@ import {StakeRegistry, IStrategy} from "eigenlayer-middleware/StakeRegistry.sol"
 import {BLSApkRegistry} from "eigenlayer-middleware/BLSApkRegistry.sol";
 import {OperatorStateRetriever} from "eigenlayer-middleware/OperatorStateRetriever.sol";
 
-import {IMultiProverServiceManager} from "../src/interfaces/IMultiProverServiceManager.sol";
-import {MultiProverServiceManager} from "../src/core/MultiProverServiceManager.sol";
+import {IMultiProverServiceManager} from "../contracts/interfaces/IMultiProverServiceManager.sol";
+import {MultiProverServiceManager} from "../contracts/core/MultiProverServiceManager.sol";
 
 import "forge-std/Script.sol";
+import "./DeployHelpers.s.sol";
 
-contract DeployMultiProverServiceManager is Script {
+contract DeployMultiProverServiceManager is ScaffoldETHDeployy {
     function setUp() public {}
 
     function run() public {
@@ -178,6 +179,9 @@ contract DeployMultiProverServiceManager is Script {
 
         OperatorStateRetriever operatorStateRetriever = new OperatorStateRetriever();
         vm.stopBroadcast();
+
+
+        exportDeployments();
 
         string memory output = "multi-prover avs contracts deployment output";
         vm.serializeAddress(output, "indexRegistry", address(indexRegistry));
