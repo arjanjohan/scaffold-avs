@@ -5,11 +5,11 @@ import {Pausable} from "eigenlayer-contracts/src/contracts/permissions/Pausable.
 import {IPauserRegistry} from "eigenlayer-contracts/src/contracts/interfaces/IPauserRegistry.sol";
 import {ISignatureUtils} from "eigenlayer-contracts/src/contracts/interfaces/ISignatureUtils.sol";
 
-import {ServiceManagerBase, IAVSDirectory} from "eigenlayer-middleware/src/ServiceManagerBase.sol";
-import {BLSSignatureChecker} from "eigenlayer-middleware/src/BLSSignatureChecker.sol";
-import {IRegistryCoordinator} from "eigenlayer-middleware/src/interfaces/IRegistryCoordinator.sol";
-import {IStakeRegistry} from "eigenlayer-middleware/src/interfaces/IStakeRegistry.sol";
-import {IServiceManager} from "eigenlayer-middleware/src/interfaces/IServiceManager.sol";
+import {ServiceManagerBase, IAVSDirectory} from "eigenlayer-middleware/ServiceManagerBase.sol";
+import {BLSSignatureChecker} from "eigenlayer-middleware/BLSSignatureChecker.sol";
+import {IRegistryCoordinator} from "eigenlayer-middleware/interfaces/IRegistryCoordinator.sol";
+import {IStakeRegistry} from "eigenlayer-middleware/interfaces/IStakeRegistry.sol";
+import {IServiceManager} from "eigenlayer-middleware/interfaces/IServiceManager.sol";
 
 import {MultiProverServiceManagerStorage} from "./MultiProverServiceManagerStorage.sol";
 
