@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
 
-import {IServiceManager} from "eigenlayer-middleware/interfaces/IServiceManager.sol";
-import {BLSSignatureChecker} from "eigenlayer-middleware/BLSSignatureChecker.sol";
+import {IServiceManager} from "eigenlayer-middleware/src/interfaces/IServiceManager.sol";
+import {BLSSignatureChecker} from "eigenlayer-middleware/src/BLSSignatureChecker.sol";
 
 interface IMultiProverServiceManager is IServiceManager {
     /**
