@@ -49,39 +49,39 @@ const registerOperator = async () => {
     await tx1.wait();
     console.log("Operator registered on EL successfully");
 
-    // const salt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
-    // const expiry = Math.floor(Date.now() / 1000) + 3600; // Example expiry, 1 hour from now
+    const salt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
+    const expiry = Math.floor(Date.now() / 1000) + 3600; // Example expiry, 1 hour from now
 
-    // // Define the output structure
-    // let operatorSignature = {
-    //     expiry: expiry,
-    //     salt: salt,
-    //     signature: ""
-    // };
+    // Define the output structure
+    let operatorSignature = {
+        expiry: expiry,
+        salt: salt,
+        signature: ""
+    };
 
-    // // Calculate the digest hash using the avsDirectory's method
-    // const digestHash = await avsDirectory.calculateOperatorAVSRegistrationDigestHash(
-    //     operatorWallet.address, 
-    //     contract.address, 
-    //     salt, 
-    //     expiry
-    // );
+    // Calculate the digest hash using the avsDirectory's method
+    const digestHash = await avsDirectory.calculateOperatorAVSRegistrationDigestHash(
+        operatorWallet.address, 
+        contract.address, 
+        salt, 
+        expiry
+    );
 
-    // // Sign the digest hash with the operator's private key
-    // const signingKey = new ethers.utils.SigningKey(process.env.PRIVATE_KEY!);
+    // Sign the digest hash with the operator's private key
+    const signingKey = new ethers.utils.SigningKey(process.env.PRIVATE_KEY!);
 
-    // // const signingKey = new ethers.utils.SigningKey(process.env.OPERATOR_PRIVATE_KEY!);
-    // const signature = signingKey.signDigest(digestHash);
+    // const signingKey = new ethers.utils.SigningKey(process.env.OPERATOR_PRIVATE_KEY!);
+    const signature = signingKey.signDigest(digestHash);
     
-    // // Encode the signature in the required format
-    // operatorSignature.signature = ethers.utils.joinSignature(signature);
+    // Encode the signature in the required format
+    operatorSignature.signature = ethers.utils.joinSignature(signature);
 
-    // const tx2 = await registryContract.registerOperatorWithSignature(
-    //     operatorWallet.address,
-    //     operatorSignature
-    // );
-    // await tx2.wait();
-    // console.log("Operator registered on AVS successfully");
+    const tx2 = await registryContract.registerOperatorWithSignature(
+        operatorWallet.address,
+        operatorSignature
+    );
+    await tx2.wait();
+    console.log("Operator registered on AVS successfully");
 };
 
 const monitorNewTasks = async () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTask } from "../context/TaskContext";
 import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
-import { ethers, keccak256, toUtf8Bytes } from "ethers";
+import { ethers, keccak256, toUtf8Bytes, getBytes } from "ethers";
 import { useAccount, useSignMessage } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
@@ -35,9 +35,13 @@ const RespondToTaskComponent: React.FC = () => {
   const handleRespondToTask = async () => {
     try {
       const message = `Hello, ${taskName}`;
-      const messageHash = keccak256(toUtf8Bytes(message));
-      const signature = await signMessageAsync({ message: messageHash });
-      console.log("messageHash:", messageHash);
+      // const messageHash = keccak256(toUtf8Bytes(message));
+
+      const u8bytes = toUtf8Bytes(message);
+      const messageHash = keccak256(u8bytes);
+      const messageBytes = getBytes(messageHash);
+      const signature = await signMessageAsync({ message: {raw: messageBytes} });
+
       console.log("signature:", signature);
       console.log(`Signing and responding to task ${taskIndex}`);
 
