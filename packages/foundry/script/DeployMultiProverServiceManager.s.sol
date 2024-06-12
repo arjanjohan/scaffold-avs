@@ -26,11 +26,17 @@ import {MultiProverServiceManager} from "../contracts/core/MultiProverServiceMan
 import "forge-std/Script.sol";
 import "./DeployHelpers.s.sol";
 
-contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
+contract DeployScript is ScaffoldETHDeploy {
     function setUp() public {}
 
     function run() public {
-        vm.startBroadcast();
+        uint256 deployerPrivateKey = setupLocalhostEnv();
+        if (deployerPrivateKey == 0) {
+            revert InvalidPrivateKey(
+                "You don't have a deployer account. Make sure you have set DEPLOYER_PRIVATE_KEY in .env or use `yarn generate` to generate a new random account"
+            );
+        }
+        vm.startBroadcast(deployerPrivateKey);
 
         // These are deployed strategies used by EigenDA on Holesky testnet, we will also use them for multi-prover AVS
         // address[] memory quorum0Strategies = new address[](11);
@@ -98,7 +104,7 @@ contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
 
             IIndexRegistry indexRegistryImpl = new IndexRegistry(registryCoordinator);
             IBLSApkRegistry blsApkRegistryImpl = new BLSApkRegistry(registryCoordinator);
-            address delegationManager = vm.envAddress("DELEGATION_MANAGER");
+            address delegationManager = vm.envAddress("DELEGATION_MANAGER_ADDRESS");
             IStakeRegistry stakeRegistryImpl = new StakeRegistry(registryCoordinator, IDelegationManager(delegationManager));            
 
             proxyAdmin.upgrade(ITransparentUpgradeableProxy(address(indexRegistry)), address(indexRegistryImpl));
@@ -159,7 +165,7 @@ contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
 
         // Upgrade and initialize MultiProverServiceManager
         {
-            address avsDirectory = vm.envAddress("AVS_DIRECTORY");
+            address avsDirectory = vm.envAddress("AVS_DIRECTORY_ADDRESS");
             IMultiProverServiceManager multiProverServiceManagerImpl = new MultiProverServiceManager(IAVSDirectory(avsDirectory), registryCoordinator, stakeRegistry);
             proxyAdmin.upgradeAndCall(
                 ITransparentUpgradeableProxy(address(multiProverServiceManager)), 
@@ -181,7 +187,6 @@ contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
         vm.stopBroadcast();
 
 
-        exportDeployments();
 
         string memory output = "multi-prover avs contracts deployment output";
         vm.serializeAddress(output, "indexRegistry", address(indexRegistry));
@@ -195,5 +200,12 @@ contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
         string memory outputFilePath = string.concat(vm.projectRoot(), "/script/output/avs_deploy_output.json");
         string memory finalJson = vm.serializeString(output, "object", output);
         vm.writeJson(finalJson, outputFilePath);
+
+        /**
+         * This function generates the file containing the contracts Abi definitions.
+         * These definitions are used to derive the types needed in the custom scaffold-eth hooks, for example.
+         * This function should be called last.
+         */
+        exportDeployments();
     }
 }
