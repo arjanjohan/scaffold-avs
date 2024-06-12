@@ -26,7 +26,7 @@ import {MultiProverServiceManager} from "../contracts/core/MultiProverServiceMan
 import "forge-std/Script.sol";
 import "./DeployHelpers.s.sol";
 
-contract DeployMultiProverServiceManager is ScaffoldETHDeployy {
+contract DeployMultiProverServiceManager is ScaffoldETHDeploy {
     function setUp() public {}
 
     function run() public {
