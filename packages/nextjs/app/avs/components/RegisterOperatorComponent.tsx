@@ -1,23 +1,19 @@
 "use client";
 
 import StyledButton from "./StyledButton";
-import { useAccount } from "wagmi";
-// import externalContracts from "~~/contracts/externalContracts";
+import { useAccount, useSignMessage } from "wagmi";
+import { ethers } from "ethers";
+import externalContracts from "~~/contracts/externalContracts";
+import deployedContracts from "~~/contracts/deployedContracts";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
-// TODO: Remove hardcoded chainid
-// const registeryContractAddress = externalContracts[31337].ECDSAStakeRegistry.address;
-// const registeryContractAbi = externalContracts[31337].ECDSAStakeRegistry.abi;
-// const registryCoordinatorPrivateKey = "0x1a6c3bd4b4e51b98cbe6c4cefc44d8b7b49fff24e1464fd74e6f843302b8e7c4";
-
-// const HelloWorldServiceManagerAddress = "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"; // Example address
-// const HelloWorldServiceManagerAddress = externalContracts[31337].HelloWorldServiceManager.address; // deployed address
+const HelloWorldServiceManagerAddress = externalContracts[31337].HelloWorldServiceManager.address; // deployed address
 
 // TODO: remove hardcoded values for testing purposes
-// const salt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
-// const expiry = 1818599325n;
+const salt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
+const expiry = 1818599325n;
 
-const RegisterOperatorEL: React.FC = () => {
+const RegisterOperatorComponent: React.FC = () => {
   const { address } = useAccount();
 
   const { writeContractAsync: delegationManager, isPending: isPendingDelegationManager } =
@@ -26,7 +22,7 @@ const RegisterOperatorEL: React.FC = () => {
   const { writeContractAsync: stakeRegistry, isPending: isPendingStakeRegistery } =
     useScaffoldWriteContract("ECDSAStakeRegistry");
 
-  // const { signMessageAsync } = useSignMessage();
+  const { signMessageAsync } = useSignMessage();
 
   const { data: isOperatorEigenlayer, isLoading: isOperatorEigenlayerLoading } = useScaffoldReadContract({
     contractName: "DelegationManager",
@@ -40,11 +36,11 @@ const RegisterOperatorEL: React.FC = () => {
     args: [address],
   });
 
-  // const { data: digestHash, isLoading: isDigestHashLoading } = useScaffoldReadContract({
-  //   contractName: "AVSDirectory",
-  //   functionName: "calculateOperatorAVSRegistrationDigestHash",
-  //   args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry
-  // });
+  const { data: digestHash, isLoading: isDigestHashLoading } = useScaffoldReadContract({
+    contractName: "AVSDirectory",
+    functionName: "calculateOperatorAVSRegistrationDigestHash",
+    args: [address, HelloWorldServiceManagerAddress, salt, expiry], // Example expiry
+  });
 
   const registerOperatorEigenlayer = async () => {
     if (!address) {
@@ -74,9 +70,29 @@ const RegisterOperatorEL: React.FC = () => {
 
   const registerOperatorAVS = async () => {
     try {
-      // console.log("Registering operator...");
-      console.error("NOT IMPLEMENTED YET");
-      // console.log("Operator registered with AVS successfully");
+      let operatorSignature = {
+        expiry: expiry,
+        salt: salt,
+        signature: "" as `0x${string}`,
+      };
+
+      const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
+      operatorSignature.signature = `0x${signature.slice(2)}` as `0x${string}`;
+
+      const sig1 = ethers.Signature.from(signature);
+      const sig2 = ethers.Signature.from(signature).serialized;
+
+      console.log("sig1", sig1);
+
+      console.log("Registering operator with AVS");
+      console.log("Operator address:", address);
+      console.log("Operator signature:", operatorSignature);
+      await stakeRegistry({
+        functionName: "registerOperatorWithSignature",
+        args: [operatorSignature, address],
+      });
+
+      console.log("Operator registered with AVS successfully");
     } catch (error) {
       console.error("Error registering operator: ", error);
     }
@@ -150,4 +166,4 @@ const RegisterOperatorEL: React.FC = () => {
   );
 };
 
-export default RegisterOperatorEL;
+export default RegisterOperatorComponent;

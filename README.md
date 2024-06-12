@@ -50,7 +50,13 @@ make start-chain-with-contracts-deployed
 
 This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
 
-4. On a second terminal, deploy the test contracts:
+4. Update the submodules
+
+```
+git submodule update --init --recursive
+```
+
+5. On a second terminal, deploy the test contracts:
 
 ```
 yarn deploy
@@ -58,7 +64,7 @@ yarn deploy
 
 This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
 
-5. On a third terminal, start your NextJS app:
+6. On a third terminal, start your NextJS app:
 
 ```
 yarn start
@@ -66,7 +72,7 @@ yarn start
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-6. Sign in as the operator and register with Eigenlayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
+7. Sign in as the operator and register with Eigenlayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
 
 Run smart contract test with `yarn foundry:test`
 
