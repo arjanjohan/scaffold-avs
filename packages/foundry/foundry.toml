@@ -4,6 +4,11 @@ out = 'out'
 libs = ['lib']
 fs_permissions = [{ access = "read-write", path = "./"}]
 
+# Enables or disables the optimizer
+optimizer = true
+# The number of optimizer runs
+optimizer_runs = 50
+
 [rpc_endpoints]
 default_network = "https://eth-holesky.g.alchemy.com/v2/eu3Wpw1UaYOVd_MVNRnAGSxbJ7Mtpj7C"
 localhost = "http://127.0.0.1:8545"
