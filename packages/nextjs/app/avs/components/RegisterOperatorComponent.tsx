@@ -2,7 +2,7 @@
 
 import StyledButton from "./StyledButton";
 import { useAccount, useSignMessage } from "wagmi";
-import { ethers } from "ethers";
+import { ethers, getBytes } from "ethers";
 import externalContracts from "~~/contracts/externalContracts";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
@@ -10,8 +10,8 @@ import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaf
 const HelloWorldServiceManagerAddress = externalContracts[31337].HelloWorldServiceManager.address; // deployed address
 
 // TODO: remove hardcoded values for testing purposes
-const salt = "0xb657b16b777e3b82e2ba44cdec61235d5d62e1be45a0ea151b826dc832aca0bd";
-const expiry = 1818599325n;
+const salt = "0xe2db5b2ccfdfef2a650cc1974253e1d8f6438e7462944aa8ff77f50ffa4144ce" as `0x${string}`;
+const expiry = 1718261340n; // Note the 'n' suffix to indicate bigint
 
 const RegisterOperatorComponent: React.FC = () => {
   const { address } = useAccount();
@@ -70,22 +70,25 @@ const RegisterOperatorComponent: React.FC = () => {
 
   const registerOperatorAVS = async () => {
     try {
+      const digestBytes = getBytes(digestHash ? digestHash : "");
+      console.log("digestHash", digestHash);
+      console.log("digestBytes", digestBytes);
+
+      const signature = await signMessageAsync({ message: { raw: digestBytes } });
+      // const signature = await signMessageAsync({ message: digestHash as `0x${string}` });
+
+      // Different signature based on signing the digestHash or digestBytes
+      // digestBytes = 0x4cc01da2bd2009185dfcf25ddedaecde805219e9e0b41a8885dfcf4e6ca7fea54f252285f45315b7972813c0b25e10e600ab972081facd44f586ad20f9f3a1ca1b
+      // digestHash = 0xe0f948a4af80c621ed4018098cc534ae4e30277628574408ed6159d6e6f5b98f581351dc6561fb150324a477b1897e67b98d28c1e1dbe04542478e129dd3d9f31b
+
       let operatorSignature = {
         expiry: expiry,
         salt: salt,
-        signature: "" as `0x${string}`,
+        signature: signature as `0x${string}`,
       };
-
-      const signature = await signMessageAsync({ message: digestHash ? digestHash : "" });
-      operatorSignature.signature = `0x${signature.slice(2)}` as `0x${string}`;
-
-      const sig1 = ethers.Signature.from(signature);
-      const sig2 = ethers.Signature.from(signature).serialized;
-
-      console.log("sig1", sig1);
-
       console.log("Registering operator with AVS");
       console.log("Operator address:", address);
+      console.log("Operator signature:", signature);
       console.log("Operator signature:", operatorSignature);
       await stakeRegistry({
         functionName: "registerOperatorWithSignature",
