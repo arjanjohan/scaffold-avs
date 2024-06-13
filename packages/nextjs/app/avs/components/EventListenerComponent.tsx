@@ -1,25 +1,59 @@
 "use client";
 
-import { useState } from "react";
-import { EventsTable } from "./EventsTable";
+import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
+import { useScaffoldContract, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
+import EventsTable from "./EventsTable";
 import { PaginationButton } from "./PaginationButton";
-import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth/useScaffoldEventHistory";
+import { useTask } from "../context/TaskContext";
 
 const EventListenerComponent: React.FC = () => {
+  const { address } = useAccount();
+  const { setTask } = useTask();
+
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [watchEvents, setWatchEvents] = useState<boolean>(false);
+  const [responseStatuses, setResponseStatuses] = useState<{ [key: number]: boolean }>({});
   const ITEMS_PER_PAGE = 5; // This should match the ITEMS_PER_PAGE from the PaginationButton component
 
-  const {
-    data: events,
-    error: eventsError,
-    // isLoading: eventsLoading,
-  } = useScaffoldEventHistory({
+  const { data: events, error: eventsError } = useScaffoldEventHistory({
     contractName: "HelloWorldServiceManager",
     eventName: "NewTaskCreated",
     fromBlock: 100n,
     watch: watchEvents,
   });
+
+  const { data: helloWorldServiceManagerContract } = useScaffoldContract({
+    contractName: "HelloWorldServiceManager",
+  });
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      if (!events || events.length === 0 || !helloWorldServiceManagerContract || !address) return;
+
+      const statuses = await Promise.all(events.map(async (event) => {
+        const isTaskResponded = await helloWorldServiceManagerContract.read.allTaskResponses([address, event.args.taskIndex]);
+        return { index: event.args.taskIndex, responded: isTaskResponded !== "0x" };
+      }));
+
+      const statusMap = statuses.reduce((acc, status) => {
+        acc[status.index] = status.responded;
+        return acc;
+      }, {});
+
+      setResponseStatuses(statusMap);
+    };
+
+    fetchStatuses();
+  }, [events, helloWorldServiceManagerContract, address]);
+
+  const handleActionClick = (event: Event) => {
+    setTask({
+      taskName: event.args.task.name,
+      taskIndex: event.args.taskIndex,
+      taskCreatedBlock: event.args.task.taskCreatedBlock,
+    });
+  };
 
   // Pagination logic
   const totalItems = events ? events.length : 0;
@@ -27,11 +61,10 @@ const EventListenerComponent: React.FC = () => {
 
   return (
     <div className="w-full max-w-4xl bg-base-200 p-6 rounded-lg shadow-md">
-      {/* {eventsLoading && <p>Loading events...</p>} */}
       {eventsError && <p>Error loading events: {eventsError}</p>}
       {events && events.length > 0 ? (
         <>
-          <EventsTable events={currentEvents} />
+          <EventsTable events={currentEvents} responseStatuses={responseStatuses} handleActionClick={handleActionClick} />
         </>
       ) : (
         <p>No events found.</p>
