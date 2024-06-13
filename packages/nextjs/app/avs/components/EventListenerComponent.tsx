@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
+import { useScaffoldContract, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 import EventsTable from "./EventsTable";
 import { PaginationButton } from "./PaginationButton";
-import { useScaffoldEventHistory, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTask } from "../context/TaskContext";
 
 const EventListenerComponent: React.FC = () => {
@@ -23,16 +23,16 @@ const EventListenerComponent: React.FC = () => {
     watch: watchEvents,
   });
 
+  const { data: helloWorldServiceManagerContract } = useScaffoldContract({
+    contractName: "HelloWorldServiceManager",
+  });
+
   useEffect(() => {
     const fetchStatuses = async () => {
-      if (!events || events.length === 0) return;
+      if (!events || events.length === 0 || !helloWorldServiceManagerContract || !address) return;
 
       const statuses = await Promise.all(events.map(async (event) => {
-        const { data: isTaskResponded } = await useScaffoldReadContract({
-          contractName: "HelloWorldServiceManager",
-          functionName: "allTaskResponses",
-          args: [event.args.taskIndex],
-        });
+        const isTaskResponded = await helloWorldServiceManagerContract.read.allTaskResponses([address, event.args.taskIndex]);
         return { index: event.args.taskIndex, responded: isTaskResponded !== "0x" };
       }));
 
@@ -45,7 +45,7 @@ const EventListenerComponent: React.FC = () => {
     };
 
     fetchStatuses();
-  }, [events]);
+  }, [events, helloWorldServiceManagerContract, address]);
 
   const handleActionClick = (event: Event) => {
     setTask({

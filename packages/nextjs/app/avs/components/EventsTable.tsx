@@ -25,10 +25,10 @@ const EventsTable: React.FC<EventsTableProps> = ({ events, responseStatuses, han
         <table className="table text-xl bg-base-100 table-zebra w-full md:table-md table-sm">
           <thead>
             <tr className="rounded-xl text-sm text-base-content">
-              <th className="bg-primary">Task Index</th>
-              <th className="bg-primary">Task Name</th>
-              <th className="bg-primary">Task Created Block</th>
-              <th className="bg-primary">Action</th>
+              <th className="bg-primary">Index</th>
+              <th className="bg-primary">Name</th>
+              <th className="bg-primary">Block</th>
+              <th className="bg-primary">Response</th>
             </tr>
           </thead>
           <tbody>
@@ -59,9 +59,9 @@ const EventsTableRow: React.FC<EventsTableRowProps> = ({ event, index, handleAct
   return (
     <tr key={index} className="hover text-sm">
       <td className="w-1/12 md:py-4">{event.args.taskIndex}</td>
-      <td className="w-2/12 md:py-4">{event.args.task.name}</td>
-      <td className="w-2/12 md:py-4">{event.args.task.taskCreatedBlock}</td>
-      <td className="w-1/12 md:py-4">
+      <td className="w-3/12 md:py-4">{event.args.task.name}</td>
+      <td className="w-1/12 md:py-4">{event.args.task.taskCreatedBlock}</td>
+      <td className="w-2/12 md:py-4">
         <button className="btn btn-accent btn-sm" onClick={() => handleActionClick(event)} disabled={responseStatus}>
           {responseStatus ? "✅ Responded" : "Respond"}
         </button>
