@@ -38,7 +38,7 @@ const EventListenerComponent: React.FC = () => {
       )}
       <div className="flex justify-between items-center mt-5">
         <div className="mt-5 justify-end flex gap-3 mx-5">
-          <span className="self-center text-accent-content font-medium">Watch events</span>
+          <span className="self-center text-accent-content font-medium">Watch tasks</span>
           <input
             type="checkbox"
             checked={watchEvents}
