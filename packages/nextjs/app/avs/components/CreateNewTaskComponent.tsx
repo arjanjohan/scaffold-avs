@@ -5,6 +5,7 @@ import StyledButton from "./StyledButton";
 import StyledInput from "./StyledInput";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+import deployedContracts from "~~/contracts/deployedContracts";
 import externalContracts from "~~/contracts/externalContracts";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";

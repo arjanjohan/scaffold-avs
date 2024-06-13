@@ -35,18 +35,11 @@ const RespondToTaskComponent: React.FC = () => {
   const handleRespondToTask = async () => {
     try {
       const message = `Hello, ${taskName}`;
-      // const messageHash = keccak256(toUtf8Bytes(message));
+      const messageHashBytes = getBytes(keccak256(toUtf8Bytes(message)));
+      const signature = await signMessageAsync({ message: {raw: messageHashBytes} });
 
-      const u8bytes = toUtf8Bytes(message);
-      const messageHash = keccak256(u8bytes);
-      const messageBytes = getBytes(messageHash);
-      const signature = await signMessageAsync({ message: {raw: messageBytes} });
-
-      console.log("signature:", signature);
       console.log(`Signing and responding to task ${taskIndex}`);
 
-      const newSig = ethers.Signature.from(signature);
-      console.log("newSig", newSig);
       await respondToTask({
         functionName: "respondToTask",
         args: [{ name: taskName, taskCreatedBlock: taskCreatedBlock }, taskIndex, signature],
