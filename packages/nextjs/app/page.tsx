@@ -5,6 +5,7 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon, ServerStackIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
+import TeamComponent from "../components/Team";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -73,6 +74,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
+        <TeamComponent/>
       </div>
     </>
   );
