@@ -6,24 +6,13 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   17000: {
-    ERC20Mock: {
-      address: "0x61a5ca3b76878c54a0a9d983ed8ad82c6d27621d",
+    EmptyContract: {
+      address: "0x83f235634bc1c6c0c67b8d5ab8bd2d88e4e3c00c",
       abi: [
         {
           type: "function",
-          name: "allowance",
-          inputs: [
-            {
-              name: "owner",
-              type: "address",
-              internalType: "address",
-            },
-            {
-              name: "spender",
-              type: "address",
-              internalType: "address",
-            },
-          ],
+          name: "foo",
+          inputs: [],
           outputs: [
             {
               name: "",
@@ -31,21 +20,193 @@ const deployedContracts = {
               internalType: "uint256",
             },
           ],
-          stateMutability: "view",
+          stateMutability: "pure",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ProxyAdmin: {
+      address: "0x38c256f5e1dca667f246093b66c022a09d607506",
+      abi: [
+        {
+          type: "function",
+          name: "changeProxyAdmin",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract ITransparentUpgradeableProxy",
+            },
+            {
+              name: "newAdmin",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
         },
         {
           type: "function",
-          name: "approve",
+          name: "getProxyAdmin",
           inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract ITransparentUpgradeableProxy",
+            },
+          ],
+          outputs: [
             {
               name: "",
               type: "address",
               internalType: "address",
             },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getProxyImplementation",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract ITransparentUpgradeableProxy",
+            },
+          ],
+          outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgrade",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract ITransparentUpgradeableProxy",
+            },
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "upgradeAndCall",
+          inputs: [
+            {
+              name: "proxy",
+              type: "address",
+              internalType: "contract ITransparentUpgradeableProxy",
+            },
+            {
+              name: "implementation",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    PauserRegistry: {
+      address: "0x22c03dae7b95d2e4faff18440182692f645961b6",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_pausers",
+              type: "address[]",
+              internalType: "address[]",
+            },
+            {
+              name: "_unpauser",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isPauser",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
             },
           ],
           outputs: [
@@ -55,21 +216,586 @@ const deployedContracts = {
               internalType: "bool",
             },
           ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "setIsPauser",
+          inputs: [
+            {
+              name: "newPauser",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "canPause",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
           stateMutability: "nonpayable",
         },
         {
           type: "function",
-          name: "balanceOf",
+          name: "setUnpauser",
           inputs: [
             {
-              name: "account",
+              name: "newUnpauser",
               type: "address",
               internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "unpauser",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "PauserStatusChanged",
+          inputs: [
+            {
+              name: "pauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "canPause",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "UnpauserChanged",
+          inputs: [
+            {
+              name: "previousUnpauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newUnpauser",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    TransparentUpgradeableProxy: {
+      address: "0x7fee64c511e4e5f5904f44983a9e1b4b7a31ee42",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_logic",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "admin_",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          stateMutability: "payable",
+        },
+        {
+          type: "fallback",
+          stateMutability: "payable",
+        },
+        {
+          type: "receive",
+          stateMutability: "payable",
+        },
+        {
+          type: "event",
+          name: "AdminChanged",
+          inputs: [
+            {
+              name: "previousAdmin",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newAdmin",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "BeaconUpgraded",
+          inputs: [
+            {
+              name: "beacon",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Upgraded",
+          inputs: [
+            {
+              name: "implementation",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    IndexRegistry: {
+      address: "0xd30817c5862117ed1ab842928693d5191eadc482",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "OPERATOR_DOES_NOT_EXIST_ID",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "currentOperatorIndex",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
             },
           ],
           outputs: [
             {
               name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "deregisterOperator",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getLatestOperatorUpdate",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "operatorIndex",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IIndexRegistry.OperatorUpdate",
+              components: [
+                {
+                  name: "fromBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "operatorId",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLatestQuorumUpdate",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IIndexRegistry.QuorumUpdate",
+              components: [
+                {
+                  name: "fromBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "numOperators",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorListAtBlockNumber",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32[]",
+              internalType: "bytes32[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorUpdateAtIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "operatorIndex",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "arrayIndex",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IIndexRegistry.OperatorUpdate",
+              components: [
+                {
+                  name: "fromBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "operatorId",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumUpdateAtIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "quorumIndex",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IIndexRegistry.QuorumUpdate",
+              components: [
+                {
+                  name: "fromBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "numOperators",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initializeQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registerOperator",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32[]",
+              internalType: "uint32[]",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registryCoordinator",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "totalOperatorsForQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "QuorumIndexUpdate",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+            {
+              name: "newOperatorIndex",
+              type: "uint32",
+              indexed: false,
+              internalType: "uint32",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    BLSApkRegistry: {
+      address: "0x467ca1175678502f0e6e7395d0433383d280d7d4",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "apkHistory",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "apkHash",
+              type: "bytes24",
+              internalType: "bytes24",
+            },
+            {
+              name: "updateBlockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "nextUpdateBlockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "currentApk",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "X",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "Y",
               type: "uint256",
               internalType: "uint256",
             },
@@ -78,17 +804,17 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "mint",
+          name: "deregisterOperator",
           inputs: [
             {
-              name: "account",
+              name: "operator",
               type: "address",
               internalType: "address",
             },
             {
-              name: "amount",
-              type: "uint256",
-              internalType: "uint256",
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
             },
           ],
           outputs: [],
@@ -96,7 +822,572 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "totalSupply",
+          name: "getApk",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getApkHashAtBlockNumberAndIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes24",
+              internalType: "bytes24",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getApkHistoryLength",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getApkIndicesAtBlockNumber",
+          inputs: [
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "blockNumber",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32[]",
+              internalType: "uint32[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getApkUpdateAtIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IBLSApkRegistry.ApkUpdate",
+              components: [
+                {
+                  name: "apkHash",
+                  type: "bytes24",
+                  internalType: "bytes24",
+                },
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorFromPubkeyHash",
+          inputs: [
+            {
+              name: "pubkeyHash",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorId",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getRegisteredPubkey",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initializeQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "operatorToPubkey",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "X",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "Y",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "operatorToPubkeyHash",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pubkeyHashToOperator",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "registerBLSPublicKey",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "params",
+              type: "tuple",
+              internalType: "struct IBLSApkRegistry.PubkeyRegistrationParams",
+              components: [
+                {
+                  name: "pubkeyRegistrationSignature",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG1",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG2",
+                  type: "tuple",
+                  internalType: "struct BN254.G2Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "pubkeyRegistrationMessageHash",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registerOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registryCoordinator",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "NewPubkeyRegistration",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "pubkeyG1",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+            {
+              name: "pubkeyG2",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct BN254.G2Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256[2]",
+                  internalType: "uint256[2]",
+                },
+                {
+                  name: "Y",
+                  type: "uint256[2]",
+                  internalType: "uint256[2]",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorAddedToQuorums",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              indexed: false,
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorRemovedFromQuorums",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              indexed: false,
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    StakeRegistry: {
+      address: "0x2075555a06a08d23ce4009af66f4733245d1d8f0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "_delegationManager",
+              type: "address",
+              internalType: "contract IDelegationManager",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "MAX_WEIGHING_FUNCTION_LENGTH",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "WEIGHTING_DIVISOR",
           inputs: [],
           outputs: [
             {
@@ -109,15 +1400,199 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "transfer",
+          name: "addStrategies",
           inputs: [
             {
-              name: "to",
-              type: "address",
-              internalType: "address",
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
             },
             {
-              name: "amount",
+              name: "_strategyParams",
+              type: "tuple[]",
+              internalType: "struct IStakeRegistry.StrategyParams[]",
+              components: [
+                {
+                  name: "strategy",
+                  type: "address",
+                  internalType: "contract IStrategy",
+                },
+                {
+                  name: "multiplier",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "delegation",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IDelegationManager",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "deregisterOperator",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getCurrentStake",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getCurrentTotalStake",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getLatestStakeUpdate",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IStakeRegistry.StakeUpdate",
+              components: [
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeAtBlockNumber",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeAtBlockNumberAndIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "index",
               type: "uint256",
               internalType: "uint256",
             },
@@ -125,30 +1600,1334 @@ const deployedContracts = {
           outputs: [
             {
               name: "",
-              type: "bool",
-              internalType: "bool",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeHistory",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple[]",
+              internalType: "struct IStakeRegistry.StakeUpdate[]",
+              components: [
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeHistoryLength",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeUpdateAtIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IStakeRegistry.StakeUpdate",
+              components: [
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStakeUpdateIndexAtBlockNumber",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalStakeAtBlockNumberFromIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalStakeHistoryLength",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalStakeIndicesAtBlockNumber",
+          inputs: [
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32[]",
+              internalType: "uint32[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalStakeUpdateAtIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IStakeRegistry.StakeUpdate",
+              components: [
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initializeQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "minimumStake",
+              type: "uint96",
+              internalType: "uint96",
+            },
+            {
+              name: "_strategyParams",
+              type: "tuple[]",
+              internalType: "struct IStakeRegistry.StrategyParams[]",
+              components: [
+                {
+                  name: "strategy",
+                  type: "address",
+                  internalType: "contract IStrategy",
+                },
+                {
+                  name: "multiplier",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "minimumStakeForQuorum",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "modifyStrategyParams",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "strategyIndices",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+            {
+              name: "newMultipliers",
+              type: "uint96[]",
+              internalType: "uint96[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registerOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96[]",
+              internalType: "uint96[]",
+            },
+            {
+              name: "",
+              type: "uint96[]",
+              internalType: "uint96[]",
             },
           ],
           stateMutability: "nonpayable",
         },
         {
           type: "function",
-          name: "transferFrom",
+          name: "registryCoordinator",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "removeStrategies",
           inputs: [
             {
-              name: "from",
-              type: "address",
-              internalType: "address",
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
             },
             {
-              name: "to",
-              type: "address",
-              internalType: "address",
+              name: "indicesToRemove",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setMinimumStakeForQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
             },
             {
-              name: "amount",
+              name: "minimumStake",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "strategiesPerQuorum",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "",
               type: "uint256",
               internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IStrategy",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "strategyParams",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "strategy",
+              type: "address",
+              internalType: "contract IStrategy",
+            },
+            {
+              name: "multiplier",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "strategyParamsByIndex",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IStakeRegistry.StrategyParams",
+              components: [
+                {
+                  name: "strategy",
+                  type: "address",
+                  internalType: "contract IStrategy",
+                },
+                {
+                  name: "multiplier",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "strategyParamsLength",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "updateOperatorStake",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint192",
+              internalType: "uint192",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "weightOfOperatorForQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint96",
+              internalType: "uint96",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "MinimumStakeForQuorumUpdated",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+            {
+              name: "minimumStake",
+              type: "uint96",
+              indexed: false,
+              internalType: "uint96",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorStakeUpdate",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+            {
+              name: "stake",
+              type: "uint96",
+              indexed: false,
+              internalType: "uint96",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "QuorumCreated",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StrategyAddedToQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+            {
+              name: "strategy",
+              type: "address",
+              indexed: false,
+              internalType: "contract IStrategy",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StrategyMultiplierUpdated",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+            {
+              name: "strategy",
+              type: "address",
+              indexed: false,
+              internalType: "contract IStrategy",
+            },
+            {
+              name: "multiplier",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StrategyRemovedFromQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+            {
+              name: "strategy",
+              type: "address",
+              indexed: false,
+              internalType: "contract IStrategy",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    RegistryCoordinator: {
+      address: "0x0a4e93e13f6b984ecf3afdd6b6b7480abeb063ff",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_serviceManager",
+              type: "address",
+              internalType: "contract IServiceManager",
+            },
+            {
+              name: "_stakeRegistry",
+              type: "address",
+              internalType: "contract IStakeRegistry",
+            },
+            {
+              name: "_blsApkRegistry",
+              type: "address",
+              internalType: "contract IBLSApkRegistry",
+            },
+            {
+              name: "_indexRegistry",
+              type: "address",
+              internalType: "contract IIndexRegistry",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "OPERATOR_CHURN_APPROVAL_TYPEHASH",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "PUBKEY_REGISTRATION_TYPEHASH",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "blsApkRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IBLSApkRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "calculateOperatorChurnApprovalDigestHash",
+          inputs: [
+            {
+              name: "registeringOperator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "registeringOperatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "operatorKickParams",
+              type: "tuple[]",
+              internalType: "struct IRegistryCoordinator.OperatorKickParam[]",
+              components: [
+                {
+                  name: "quorumNumber",
+                  type: "uint8",
+                  internalType: "uint8",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              name: "salt",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "expiry",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "churnApprover",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "createQuorum",
+          inputs: [
+            {
+              name: "operatorSetParams",
+              type: "tuple",
+              internalType: "struct IRegistryCoordinator.OperatorSetParam",
+              components: [
+                {
+                  name: "maxOperatorCount",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "kickBIPsOfOperatorStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "kickBIPsOfTotalStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "minimumStake",
+              type: "uint96",
+              internalType: "uint96",
+            },
+            {
+              name: "strategyParams",
+              type: "tuple[]",
+              internalType: "struct IStakeRegistry.StrategyParams[]",
+              components: [
+                {
+                  name: "strategy",
+                  type: "address",
+                  internalType: "contract IStrategy",
+                },
+                {
+                  name: "multiplier",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "deregisterOperator",
+          inputs: [
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "eip712Domain",
+          inputs: [],
+          outputs: [
+            {
+              name: "fields",
+              type: "bytes1",
+              internalType: "bytes1",
+            },
+            {
+              name: "name",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "version",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "chainId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "verifyingContract",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "salt",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "extensions",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "ejectOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "ejector",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getCurrentQuorumBitmap",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint192",
+              internalType: "uint192",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IRegistryCoordinator.OperatorInfo",
+              components: [
+                {
+                  name: "operatorId",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "status",
+                  type: "uint8",
+                  internalType: "enum IRegistryCoordinator.OperatorStatus",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorFromId",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorId",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorSetParams",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IRegistryCoordinator.OperatorSetParam",
+              components: [
+                {
+                  name: "maxOperatorCount",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "kickBIPsOfOperatorStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "kickBIPsOfTotalStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorStatus",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "enum IRegistryCoordinator.OperatorStatus",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumBitmapAtBlockNumberByIndex",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint192",
+              internalType: "uint192",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumBitmapHistoryLength",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumBitmapIndicesAtBlockNumber",
+          inputs: [
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "operatorIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint32[]",
+              internalType: "uint32[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumBitmapUpdateByIndex",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "index",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IRegistryCoordinator.QuorumBitmapUpdate",
+              components: [
+                {
+                  name: "updateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "nextUpdateBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "quorumBitmap",
+                  type: "uint192",
+                  internalType: "uint192",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "indexRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IIndexRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initialize",
+          inputs: [
+            {
+              name: "_initialOwner",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_churnApprover",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_ejector",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_pauserRegistry",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+            {
+              name: "_initialPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_operatorSetParams",
+              type: "tuple[]",
+              internalType: "struct IRegistryCoordinator.OperatorSetParam[]",
+              components: [
+                {
+                  name: "maxOperatorCount",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "kickBIPsOfOperatorStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "kickBIPsOfTotalStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "_minimumStakes",
+              type: "uint96[]",
+              internalType: "uint96[]",
+            },
+            {
+              name: "_strategyParams",
+              type: "tuple[][]",
+              internalType: "struct IStakeRegistry.StrategyParams[][]",
+              components: [
+                {
+                  name: "strategy",
+                  type: "address",
+                  internalType: "contract IStrategy",
+                },
+                {
+                  name: "multiplier",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isChurnApproverSaltUsed",
+          inputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
             },
           ],
           outputs: [
@@ -158,26 +2937,774 @@ const deployedContracts = {
               internalType: "bool",
             },
           ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "numRegistries",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "pauseAll",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [
+            {
+              name: "index",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pauserRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pubkeyRegistrationMessageHash",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "quorumCount",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "quorumUpdateBlockNumber",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "registerOperator",
+          inputs: [
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "socket",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "params",
+              type: "tuple",
+              internalType: "struct IBLSApkRegistry.PubkeyRegistrationParams",
+              components: [
+                {
+                  name: "pubkeyRegistrationSignature",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG1",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG2",
+                  type: "tuple",
+                  internalType: "struct BN254.G2Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "operatorSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registerOperatorWithChurn",
+          inputs: [
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "socket",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "params",
+              type: "tuple",
+              internalType: "struct IBLSApkRegistry.PubkeyRegistrationParams",
+              components: [
+                {
+                  name: "pubkeyRegistrationSignature",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG1",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "pubkeyG2",
+                  type: "tuple",
+                  internalType: "struct BN254.G2Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "operatorKickParams",
+              type: "tuple[]",
+              internalType: "struct IRegistryCoordinator.OperatorKickParam[]",
+              components: [
+                {
+                  name: "quorumNumber",
+                  type: "uint8",
+                  internalType: "uint8",
+                },
+                {
+                  name: "operator",
+                  type: "address",
+                  internalType: "address",
+                },
+              ],
+            },
+            {
+              name: "churnApproverSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+            {
+              name: "operatorSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registries",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "serviceManager",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IServiceManager",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "setChurnApprover",
+          inputs: [
+            {
+              name: "_churnApprover",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setEjector",
+          inputs: [
+            {
+              name: "_ejector",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setOperatorSetParams",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+            {
+              name: "operatorSetParams",
+              type: "tuple",
+              internalType: "struct IRegistryCoordinator.OperatorSetParam",
+              components: [
+                {
+                  name: "maxOperatorCount",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "kickBIPsOfOperatorStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "kickBIPsOfTotalStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setPauserRegistry",
+          inputs: [
+            {
+              name: "newPauserRegistry",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "stakeRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IStakeRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "unpause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateOperators",
+          inputs: [
+            {
+              name: "operators",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateOperatorsForQuorum",
+          inputs: [
+            {
+              name: "operatorsPerQuorum",
+              type: "address[][]",
+              internalType: "address[][]",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateSocket",
+          inputs: [
+            {
+              name: "socket",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
           stateMutability: "nonpayable",
         },
         {
           type: "event",
-          name: "Approval",
+          name: "ChurnApproverUpdated",
           inputs: [
             {
-              name: "owner",
+              name: "prevChurnApprover",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newChurnApprover",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "EIP712DomainChanged",
+          inputs: [],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "EjectorUpdated",
+          inputs: [
+            {
+              name: "prevEjector",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "newEjector",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorDeregistered",
+          inputs: [
+            {
+              name: "operator",
               type: "address",
               indexed: true,
               internalType: "address",
             },
             {
-              name: "spender",
+              name: "operatorId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorRegistered",
+          inputs: [
+            {
+              name: "operator",
               type: "address",
               indexed: true,
               internalType: "address",
             },
             {
-              name: "value",
+              name: "operatorId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorSetParamsUpdated",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              indexed: true,
+              internalType: "uint8",
+            },
+            {
+              name: "operatorSetParams",
+              type: "tuple",
+              indexed: false,
+              internalType: "struct IRegistryCoordinator.OperatorSetParam",
+              components: [
+                {
+                  name: "maxOperatorCount",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+                {
+                  name: "kickBIPsOfOperatorStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "kickBIPsOfTotalStake",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OperatorSocketUpdate",
+          inputs: [
+            {
+              name: "operatorId",
+              type: "bytes32",
+              indexed: true,
+              internalType: "bytes32",
+            },
+            {
+              name: "socket",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Paused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
               type: "uint256",
               indexed: false,
               internalType: "uint256",
@@ -187,22 +3714,35 @@ const deployedContracts = {
         },
         {
           type: "event",
-          name: "Transfer",
+          name: "PauserRegistrySet",
           inputs: [
             {
-              name: "from",
+              name: "pauserRegistry",
               type: "address",
-              indexed: true,
-              internalType: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
             },
             {
-              name: "to",
+              name: "newPauserRegistry",
               type: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "QuorumBlockNumberUpdated",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
               indexed: true,
-              internalType: "address",
+              internalType: "uint8",
             },
             {
-              name: "value",
+              name: "blocknumber",
               type: "uint256",
               indexed: false,
               internalType: "uint256",
@@ -210,21 +3750,1698 @@ const deployedContracts = {
           ],
           anonymous: false,
         },
+        {
+          type: "event",
+          name: "Unpaused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "InvalidShortString",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "StringTooLong",
+          inputs: [
+            {
+              name: "str",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+        },
       ],
-      inheritedFunctions: {
-        allowance: "lib/forge-std/src/interfaces/IERC20.sol",
-        approve: "lib/forge-std/src/interfaces/IERC20.sol",
-        balanceOf: "lib/forge-std/src/interfaces/IERC20.sol",
-        decimals: "lib/forge-std/src/interfaces/IERC20.sol",
-        name: "lib/forge-std/src/interfaces/IERC20.sol",
-        symbol: "lib/forge-std/src/interfaces/IERC20.sol",
-        totalSupply: "lib/forge-std/src/interfaces/IERC20.sol",
-        transfer: "lib/forge-std/src/interfaces/IERC20.sol",
-        transferFrom: "lib/forge-std/src/interfaces/IERC20.sol",
-      },
+      inheritedFunctions: {},
+    },
+    MultiProverServiceManager: {
+      address: "0x36b51c171d206d27554430c90460e56920b8c8af",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "__avsDirectory",
+              type: "address",
+              internalType: "contract IAVSDirectory",
+            },
+            {
+              name: "__registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "__stakeRegistry",
+              type: "address",
+              internalType: "contract IStakeRegistry",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "PAUSED_OPERTOR_REGISTRATION",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "PAUSED_SUBMIT_STATE",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "THRESHOLD_DENOMINATOR",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "_hashReducedStateHeader",
+          inputs: [
+            {
+              name: "reducedStateHeader",
+              type: "tuple",
+              internalType:
+                "struct IMultiProverServiceManager.ReducedStateHeader",
+              components: [
+                {
+                  name: "committeeId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "metadata",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "state",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "referenceBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "pure",
+        },
+        {
+          type: "function",
+          name: "addCommittee",
+          inputs: [
+            {
+              name: "committee",
+              type: "tuple",
+              internalType: "struct IMultiProverServiceManager.Committee",
+              components: [
+                {
+                  name: "id",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "metadata",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "teeQuorumNumbers",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "addTEEQuorum",
+          inputs: [
+            {
+              name: "teeQuorum",
+              type: "tuple",
+              internalType: "struct IMultiProverServiceManager.TEEQuorum",
+              components: [
+                {
+                  name: "teeType",
+                  type: "uint8",
+                  internalType: "enum IMultiProverServiceManager.TEE",
+                },
+                {
+                  name: "quorumNumber",
+                  type: "uint8",
+                  internalType: "uint8",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "avsDirectory",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "blacklistOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "blsApkRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IBLSApkRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "checkSignatures",
+          inputs: [
+            {
+              name: "msgHash",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "referenceBlockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "params",
+              type: "tuple",
+              internalType:
+                "struct IBLSSignatureChecker.NonSignerStakesAndSignature",
+              components: [
+                {
+                  name: "nonSignerQuorumBitmapIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "nonSignerPubkeys",
+                  type: "tuple[]",
+                  internalType: "struct BN254.G1Point[]",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "quorumApks",
+                  type: "tuple[]",
+                  internalType: "struct BN254.G1Point[]",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "apkG2",
+                  type: "tuple",
+                  internalType: "struct BN254.G2Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                  ],
+                },
+                {
+                  name: "sigma",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "quorumApkIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "totalStakeIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "nonSignerStakeIndices",
+                  type: "uint32[][]",
+                  internalType: "uint32[][]",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct IBLSSignatureChecker.QuorumStakeTotals",
+              components: [
+                {
+                  name: "signedStakeForQuorum",
+                  type: "uint96[]",
+                  internalType: "uint96[]",
+                },
+                {
+                  name: "totalStakeForQuorum",
+                  type: "uint96[]",
+                  internalType: "uint96[]",
+                },
+              ],
+            },
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "committeeManager",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "committees",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "id",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "description",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "metadata",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "teeQuorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "confirmState",
+          inputs: [
+            {
+              name: "stateHeader",
+              type: "tuple",
+              internalType: "struct IMultiProverServiceManager.StateHeader",
+              components: [
+                {
+                  name: "committeeId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "metadata",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "state",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "quorumNumbers",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "quorumThresholdPercentages",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "referenceBlockNumber",
+                  type: "uint32",
+                  internalType: "uint32",
+                },
+              ],
+            },
+            {
+              name: "nonSignerStakesAndSignature",
+              type: "tuple",
+              internalType:
+                "struct IBLSSignatureChecker.NonSignerStakesAndSignature",
+              components: [
+                {
+                  name: "nonSignerQuorumBitmapIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "nonSignerPubkeys",
+                  type: "tuple[]",
+                  internalType: "struct BN254.G1Point[]",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "quorumApks",
+                  type: "tuple[]",
+                  internalType: "struct BN254.G1Point[]",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "apkG2",
+                  type: "tuple",
+                  internalType: "struct BN254.G2Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256[2]",
+                      internalType: "uint256[2]",
+                    },
+                  ],
+                },
+                {
+                  name: "sigma",
+                  type: "tuple",
+                  internalType: "struct BN254.G1Point",
+                  components: [
+                    {
+                      name: "X",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "Y",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                  ],
+                },
+                {
+                  name: "quorumApkIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "totalStakeIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "nonSignerStakeIndices",
+                  type: "uint32[][]",
+                  internalType: "uint32[][]",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "delegation",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IDelegationManager",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "deregisterOperatorFromAVS",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "disablePoA",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "enablePoA",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getOperatorRestakedStrategies",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getRestakeableStrategies",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address[]",
+              internalType: "address[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "initialize",
+          inputs: [
+            {
+              name: "_pauserRegistry",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+            {
+              name: "_initialPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_initialOwner",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_stateConfirmer",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_poaManager",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_committeeManager",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_poaEnabled",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isOperatorWhitelisted",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "isPoAEnabled",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "pauseAll",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [
+            {
+              name: "index",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "paused",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pauserRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "poaEnabled",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "poaManager",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "quorumIdToCommitteeId",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "registerOperatorToAVS",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operatorSignature",
+              type: "tuple",
+              internalType: "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+              components: [
+                {
+                  name: "signature",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "salt",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "expiry",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "registryCoordinator",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "removeCommittee",
+          inputs: [
+            {
+              name: "committeeId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "removeTEEQuorum",
+          inputs: [
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setCommitteeManager",
+          inputs: [
+            {
+              name: "_committeeManager",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setPauserRegistry",
+          inputs: [
+            {
+              name: "newPauserRegistry",
+              type: "address",
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setPoAManager",
+          inputs: [
+            {
+              name: "_poaManager",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setStaleStakesForbidden",
+          inputs: [
+            {
+              name: "value",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setStateConfirmer",
+          inputs: [
+            {
+              name: "_stateConfirmer",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "stakeRegistry",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IStakeRegistry",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "staleStakesForbidden",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "stateConfirmer",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "taskId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "taskIdToMetadataHash",
+          inputs: [
+            {
+              name: "",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "teeQuorums",
+          inputs: [
+            {
+              name: "",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          outputs: [
+            {
+              name: "teeType",
+              type: "uint8",
+              internalType: "enum IMultiProverServiceManager.TEE",
+            },
+            {
+              name: "quorumNumber",
+              type: "uint8",
+              internalType: "uint8",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "trySignatureAndApkVerification",
+          inputs: [
+            {
+              name: "msgHash",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "apk",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+            {
+              name: "apkG2",
+              type: "tuple",
+              internalType: "struct BN254.G2Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256[2]",
+                  internalType: "uint256[2]",
+                },
+                {
+                  name: "Y",
+                  type: "uint256[2]",
+                  internalType: "uint256[2]",
+                },
+              ],
+            },
+            {
+              name: "sigma",
+              type: "tuple",
+              internalType: "struct BN254.G1Point",
+              components: [
+                {
+                  name: "X",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "Y",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "pairingSuccessful",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "siganatureIsValid",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "unpause",
+          inputs: [
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateAVSMetadataURI",
+          inputs: [
+            {
+              name: "_metadataURI",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updateCommittee",
+          inputs: [
+            {
+              name: "committee",
+              type: "tuple",
+              internalType: "struct IMultiProverServiceManager.Committee",
+              components: [
+                {
+                  name: "id",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "description",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "metadata",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+                {
+                  name: "teeQuorumNumbers",
+                  type: "bytes",
+                  internalType: "bytes",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "whitelistOperator",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "CommitteeManagerUpdated",
+          inputs: [
+            {
+              name: "previousCommitteeManager",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "currentCommitteeManager",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Initialized",
+          inputs: [
+            {
+              name: "version",
+              type: "uint8",
+              indexed: false,
+              internalType: "uint8",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Paused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "PauserRegistrySet",
+          inputs: [
+            {
+              name: "pauserRegistry",
+              type: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
+            },
+            {
+              name: "newPauserRegistry",
+              type: "address",
+              indexed: false,
+              internalType: "contract IPauserRegistry",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "PoAManagerUpdated",
+          inputs: [
+            {
+              name: "previousPoaManager",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "currentPoaManager",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StaleStakesForbiddenUpdate",
+          inputs: [
+            {
+              name: "value",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StateConfirmed",
+          inputs: [
+            {
+              name: "committeeId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "metadata",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+            {
+              name: "state",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "StateConfirmerUpdated",
+          inputs: [
+            {
+              name: "previousConfirmer",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "currentConfirmer",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Unpaused",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newPausedStatus",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "CommitteeExist",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "CommitteeNotExist",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InsufficientThreshold",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidQuorum",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidQuorumParam",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidSender",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NoPermission",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotWhitelisted",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "QuorumNotInitialized",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TEEQuorumExist",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TEEQuorumNotExist",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TEEQuorumUsed",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ZeroAddr",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ZeroId",
+          inputs: [],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    OperatorStateRetriever: {
+      address: "0xfb833437773ac233b179594437fe331571e9193b",
+      abi: [
+        {
+          type: "function",
+          name: "getCheckSignaturesIndices",
+          inputs: [
+            {
+              name: "registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "referenceBlockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "nonSignerOperatorIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType:
+                "struct OperatorStateRetriever.CheckSignaturesIndices",
+              components: [
+                {
+                  name: "nonSignerQuorumBitmapIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "quorumApkIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "totalStakeIndices",
+                  type: "uint32[]",
+                  internalType: "uint32[]",
+                },
+                {
+                  name: "nonSignerStakeIndices",
+                  type: "uint32[][]",
+                  internalType: "uint32[][]",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorState",
+          inputs: [
+            {
+              name: "registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "quorumNumbers",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple[][]",
+              internalType: "struct OperatorStateRetriever.Operator[][]",
+              components: [
+                {
+                  name: "operator",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "operatorId",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOperatorState",
+          inputs: [
+            {
+              name: "registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "operatorId",
+              type: "bytes32",
+              internalType: "bytes32",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "",
+              type: "tuple[][]",
+              internalType: "struct OperatorStateRetriever.Operator[][]",
+              components: [
+                {
+                  name: "operator",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "operatorId",
+                  type: "bytes32",
+                  internalType: "bytes32",
+                },
+                {
+                  name: "stake",
+                  type: "uint96",
+                  internalType: "uint96",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getQuorumBitmapsAtBlockNumber",
+          inputs: [
+            {
+              name: "registryCoordinator",
+              type: "address",
+              internalType: "contract IRegistryCoordinator",
+            },
+            {
+              name: "operatorIds",
+              type: "bytes32[]",
+              internalType: "bytes32[]",
+            },
+            {
+              name: "blockNumber",
+              type: "uint32",
+              internalType: "uint32",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
     },
   },
- 
 } as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
