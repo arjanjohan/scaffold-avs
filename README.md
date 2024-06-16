@@ -91,28 +91,26 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 
 7. Sign in as the operator and register with Eigenlayer and AVS on the frontend. Now you can create tasks (using any wallet) and respond to them (with a wallet registered as operator).
 
-Run smart contract test with `yarn foundry:test`
-
+**What's next**:
 - Edit your smart contract `HelloWorldServiceManager.sol` in `packages/foundry/contracts`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/foundry/script`
 
 ## Next steps
 
-This project is still in progress, and here is a list of things I want to add after the hackathon:
+This project is still in progress, and here some of the things I want to add after the hackathon:
 
 - Fix Signature errors when registering with AVS
-- Add auto respond to task feature
 - Migrate project to hardhat
 
 Contributions to the project are welcome.
 
 ## Links
 
-- [Vercel deployment](https://scaffold-avs.vercel.app/)
+- [Vercel deployment (requires local chain running)](https://scaffold-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
 - [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
-- [Medium article on how to migrate AVS contracts to Scaffold-AVS](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
+- [Medium article on how to migrate the Multi-Prover AVS contracts to Scaffold-AVS](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
 
 ## Team
 
