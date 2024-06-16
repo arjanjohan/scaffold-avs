@@ -5,15 +5,14 @@
   <a href="https://github.com/arjanjohan/scaffold-avs">Repo</a>
 </h4>
 
-🔧 An open-source, up-to-date toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and a frontend dashboard to interact with this AVS.
+🔧 Scaffold-AVS is an open-source toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and an intuitive frontend dashboard to interact with this AVS. It's easy to create a new AVS contracts and setup similar dashboards quickly.
 
 ⚙️ Built using Eigenlayer, NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
 
 - ✅ **Contract Hot Reload**: The frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
+- 🪝 **[Scaffold hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
 - 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the AVS smart contracts.
 
 ## Screenshots
 
@@ -100,9 +99,8 @@ Run smart contract test with `yarn foundry:test`
 
 ## Next steps
 
-This project is still in progress, and here is a list of tasks I need to complete:
+This project is still in progress, and here is a list of things I want to add after the hackathon:
 
-- Fix EventListenerComponent (invalid hook call for loading status)
 - Fix Signature errors when registering with AVS
 - Add auto respond to task feature
 - Migrate project to hardhat
@@ -114,6 +112,7 @@ Contributions to the project are welcome.
 - [Vercel deployment](https://scaffold-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
 - [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
+- [Medium article on how to migrate AVS contracts to Scaffold-AVS](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
 
 ## Team
 
