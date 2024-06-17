@@ -20,6 +20,10 @@
 | --------------------------------- | --------------------------------- |
 | ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
 
+| Multi-Prover AVS Committee dashboard                   | Multi-Prover AVS Quorum dasboard                     |
+| --------------------------------- | --------------------------------- |
+| ![dashboard 3](screenshots/3.png) | ![dashboard 4](screenshots/4.png) |
+
 ## Functions
 
 This dApp uses the Hello World AVS smart contracts, which includes the most basic functionalties that your AVS will probably also have. Use the Hello World AVS, or deploy your own contracts, and interact with them on your frontend dashboard. Here's an overview of all functions to interact with the AVS via the dashboard. If you want to add more, you can modify the frontend or interact with the AVS contracts via the `Debug` tab.
@@ -108,9 +112,12 @@ Contributions to the project are welcome.
 ## Links
 
 - [Vercel deployment (requires local chain running)](https://scaffold-avs.vercel.app/)
+- [Vercel deployment Scaffold-AVS with Multi-Prover AVS (on Holesky)](https://scaffold-multi-prover-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
 - [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
-- [Medium article on how to migrate the Multi-Prover AVS contracts to Scaffold-AVS](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
+- [Medium article 1: Migrate your AVS contracts over to a Scaffold-AVS repo](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
+- [Medium article 2: Setting up your AVS dashboard with Scaffold-AVS](https://medium.com/@arjanjohan/setting-up-your-avs-frontend-dashboard-with-scaffold-avs-733893366697)
+
 
 ## Team
 
