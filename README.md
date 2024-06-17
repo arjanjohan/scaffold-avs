@@ -13,7 +13,7 @@
 
 | Committee dashboard                   | Quorum dasboard                     |
 | --------------------------------- | --------------------------------- |
-| ![dashboard 1](screenshots/1.png) | ![dashboard 2](screenshots/2.png) |
+| ![dashboard 3](screenshots/3.png) | ![dashboard 4](screenshots/4.png) |
 
 ## Multi-Prover AVS
 The Automata Multi-Prover AVS target to build a robust, fortified prover system through the use of diverse, decentralized TEE committees.
@@ -39,7 +39,7 @@ This guide starts where the first article ended. It shows you how to setup a new
 
 - [Vercel deployment](https://scaffold-multi-prover-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs/tree/multi-prover-avs)
-- [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
+- [Social media post](https://x.com/arjanjohan/status/1802656725373260113)
 - [Medium article 1: Migrate your AVS contracts over to a Scaffold-AVS repo](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
 - [Medium article 2: Setting up your AVS dashboard with Scaffold-AVS](https://medium.com/@arjanjohan/setting-up-your-avs-frontend-dashboard-with-scaffold-avs-733893366697)
 

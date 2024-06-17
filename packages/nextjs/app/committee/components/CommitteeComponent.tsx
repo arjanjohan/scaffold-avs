@@ -137,15 +137,6 @@ const CommitteeComponent = () => {
           onChange={(e) => setTeeQuorumNumber(e.target.value)}
           className="input input-bordered w-full"
         />
-        <button className="btn btn-secondary mt-2 w-full" onClick={() => {
-          setNewCommittee({
-            ...newCommittee,
-            teeQuorumNumbers: newCommittee.teeQuorumNumbers + teeQuorumNumber
-          });
-          setTeeQuorumNumber("");
-        }}>
-          Add TEE Quorum Number to Committee
-        </button>
         <button className="btn btn-secondary mt-2 w-full" onClick={handleAddCommittee}>
           Add Committee
         </button>
