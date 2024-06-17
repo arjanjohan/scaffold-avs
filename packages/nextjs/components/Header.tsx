@@ -20,9 +20,13 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "AVS Dashboard",
-    href: "/avs",
+    label: "Committee",
+    href: "/committee",
   },
+  // {
+  //   label: "AVS Dashboard",
+  //   href: "/avs",
+  // },
   {
     label: "Debug Contracts",
     href: "/debug",
