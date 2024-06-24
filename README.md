@@ -1,17 +1,21 @@
 # 🏗 Scaffold-AVS
 
-<h4 align="center">
-  <a href="https://scaffold-avs.vercel.app/">Website</a> |
-  <a href="https://github.com/arjanjohan/scaffold-avs">Repo</a>
-</h4>
+<div align="center">
+
+  ![logo](logo.png)
+  <h4>
+    <a href="https://scaffold-avs.vercel.app/">Website</a> |
+    <a href="https://github.com/arjanjohan/scaffold-avs">Repo</a>
+  </h4>
+</div>
 
 🔧 Scaffold-AVS is an open-source toolkit for building your own Eigenlayer AVS. This repository is designed to make it easier for any developer to create and deploy AVS smart contracts and build user interfaces that interact with those AVS contracts. This repository includes the [Hello World AVS](https://github.com/Layr-Labs/hello-world-avs) contracts and an intuitive frontend dashboard to interact with this AVS. It's easy to create a new AVS contracts and setup similar dashboards quickly.
 
 ⚙️ Built using Eigenlayer, NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
 
 - ✅ **Contract Hot Reload**: The frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Scaffold hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
+- 🪝 **Scaffold hooks**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
+- 🧱 **Components**: Collection of common web3 components to quickly build your frontend.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the AVS smart contracts.
 
 ## Screenshots
