@@ -114,13 +114,13 @@ Contributions to the project are welcome.
 - [Vercel deployment (requires local chain running)](https://scaffold-avs.vercel.app/)
 - [Vercel deployment Scaffold-AVS with Multi-Prover AVS (on Holesky)](https://scaffold-multi-prover-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
-- [Social media post](https://x.com/arjanjohan/status/1800138721041535120)
+- [Github branch for Multi-Prover AVS dashboard](https://github.com/arjanjohan/scaffold-avs/tree/multi-prover-avs)
 - [Medium article 1: Migrate your AVS contracts over to a Scaffold-AVS repo](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
 - [Medium article 2: Setting up your AVS dashboard with Scaffold-AVS](https://medium.com/@arjanjohan/setting-up-your-avs-frontend-dashboard-with-scaffold-avs-733893366697)
 
 
 ## Team
 
-This project is made for the EigenlayerAVS MicroHacks Hackathon by:
+This project is made by:
 
 - [arjanjohan](https://x.com/arjanjohan/)
