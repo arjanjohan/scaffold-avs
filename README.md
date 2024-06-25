@@ -115,18 +115,22 @@ Contributions to the project are welcome.
 
 ## Links
 
+#### Presentation
 - [Presentation slides](https://docs.google.com/presentation/d/1MgMPbaSvr20rSifje4u8RtqtHeWIjONWLD1osXHUlWw/edit?usp=sharing)
 - [Presentation video](https://www.loom.com/share/173137d483804ab0a806b3560fb40721?sid=c8f5985c-44d5-475e-bcf5-1d56d9a84daa)
+
+#### Deployment
 - [Vercel deployment (requires local chain running)](https://scaffold-avs.vercel.app/)
 - [Vercel deployment Scaffold-AVS with Multi-Prover AVS (on Holesky)](https://scaffold-multi-prover-avs.vercel.app/)
-- [Github](https://github.com/arjanjohan/scaffold-avs)
-- [Github branch for Multi-Prover AVS dashboard](https://github.com/arjanjohan/scaffold-avs/tree/multi-prover-avs)
+
+#### Tutorials
 - [Medium article 1: Migrate your AVS contracts over to a Scaffold-AVS repo](https://medium.com/@arjanjohan/migrate-your-avs-contracts-over-to-a-scaffold-avs-repo-3c3f8cbf9488)
 - [Medium article 2: Setting up your AVS dashboard with Scaffold-AVS](https://medium.com/@arjanjohan/setting-up-your-avs-frontend-dashboard-with-scaffold-avs-733893366697)
 
+#### Github
+- [Github](https://github.com/arjanjohan/scaffold-avs)
+- [Github branch for Multi-Prover AVS dashboard](https://github.com/arjanjohan/scaffold-avs/tree/multi-prover-avs)
 
 ## Team
-
-This project is made by:
 
 - [arjanjohan](https://x.com/arjanjohan/)
