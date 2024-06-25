@@ -115,6 +115,8 @@ Contributions to the project are welcome.
 
 ## Links
 
+- [Presentation slides](https://docs.google.com/presentation/d/1MgMPbaSvr20rSifje4u8RtqtHeWIjONWLD1osXHUlWw/edit?usp=sharing)
+- [Presentation video](https://www.loom.com/share/173137d483804ab0a806b3560fb40721?sid=c8f5985c-44d5-475e-bcf5-1d56d9a84daa)
 - [Vercel deployment (requires local chain running)](https://scaffold-avs.vercel.app/)
 - [Vercel deployment Scaffold-AVS with Multi-Prover AVS (on Holesky)](https://scaffold-multi-prover-avs.vercel.app/)
 - [Github](https://github.com/arjanjohan/scaffold-avs)
